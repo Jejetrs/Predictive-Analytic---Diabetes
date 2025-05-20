@@ -20,7 +20,6 @@ Referensi:
 
 ## Business Understanding
 
-
 Dalam proyek ini, tujuan utamanya adalah membangun model prediktif yang dapat mengidentifikasi individu dengan risiko diabetes berdasarkan data kesehatan mereka.
 
 Bagian laporan ini mencakup:
@@ -40,7 +39,7 @@ Untuk menjawab permasalahan yang ada, proyek ini bertujuan untuk:
 4. Membandingkan kinerja berbagai algoritma klasifikasi, termasuk K-Nearest Neighbors, Random Forest, dan Logistic Regression, untuk menentukan model terbaik.
 5. Menghasilkan model dengan performa evaluasi optimal, dilihat dari metrik seperti akurasi, precision, recall, dan F1-score, sehingga hasil prediksi dapat dipercaya untuk mendukung keputusan awal.
 
-**“Solution Statement”**
+#### **“Solution Statement”**
 Untuk mewujudkan tujuan proyek, pendekatan yang digunakan adalah sebagai berikut:
 
 1. Menggunakan tiga algoritma klasifikasi utama, yaitu:
@@ -90,22 +89,22 @@ EDA dilakukan menggunakan visualisasi distribusi, korelasi antar fitur, dan dete
 Pada bagian ini dimaksudkan untuk menerapkan dan menyebutkan teknik data preparation yang dilakukan.
 
 **Proses data preparation yang dilakukan**
-1. Menghapus Kolom yang Tidak Relevan
+1. Menghapus Kolom yang Tidak Relevan<br>
 Kolom Id dihapus karena tidak berkontribusi dalam proses prediksi.
 
-2. Mengatasi Nilai Tidak Valid (0)
+2. Mengatasi Nilai Tidak Valid (0)<br>
 Kolom medis seperti Glucose, BloodPressure, SkinThickness, Insulin, dan BMI tidak seharusnya memiliki nilai nol. Nilai nol tersebut diganti dengan NaN, lalu diimputasi menggunakan median masing-masing kolom.
 
-3. Handling Outliers
+3. Handling Outliers<br>
 Digunakan metode Winsorizing berbasis IQR untuk mengatasi nilai outlier. Nilai di bawah Q1 - 1.5 * IQR dan di atas Q3 + 1.5 * IQR dibatasi (clipped) ke batas bawah dan atas.
 
-4. Split Data (Train-Test Split)
+4. Split Data (Train-Test Split)<br>
 Dataset dibagi menjadi 80% data pelatihan dan 20% data pengujian.
 
-5. Normalisasi Data
+5. Normalisasi Data<br>
 Menggunakan StandardScaler untuk menormalkan fitur karena model seperti KNN dan Logistic Regression sensitif terhadap skala fitur.
    
-6. Handling Data Imbalance
+6. Handling Data Imbalance<br>
 Menggunakan SMOTE untuk oversampling kelas minoritas sehingga distribusi kelas menjadi seimbang (1:1).
 
 ## Modeling
@@ -123,7 +122,7 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
 
 **Kelebihan dan kekurangan dari algoritma yang digunakan**
 
-1. K-Nearest Neighbors (KNN)
+1. K-Nearest Neighbors (KNN)<br>
     KNN adalah model yang sangat intuitif dan mudah dipahami. Cara kerjanya yaitu mencari sejumlah "tetangga terdekat" dari sebuah titik data baru, lalu memprediksi kelasnya berdasarkan mayoritas label dari tetangga tersebut. Jarak yang digunakan untuk mengukur kedekatan biasanya adalah Euclidean distance.
     
     Pada model ini, KNN dikonfigurasi dengan 5 tetangga terdekat dan menggunakan bobot berdasarkan jarak (weights='distance'), sehingga tetangga yang lebih dekat memiliki pengaruh lebih besar.
@@ -144,7 +143,7 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     - Performanya bisa turun jika datanya banyak (scalability).
     - Sensitif terhadap skala fitur dan noise, perlu dilakukan normalisasi.
 
-2. Random Forest
+2. Random Forest<br>
     Random Forest adalah model berbasis ensembling yang menggunakan banyak pohon keputusan (decision tree). Ibaratnya, daripada menebak keputusan berdasarkan satu "pendapat", model ini mengumpulkan banyak "pendapat dari pohon-pohon" dan mengambil suara terbanyak.
 
     Setiap decision tree dibentuk dari subset data dan fitur yang berbeda-beda (ini disebut bagging), jadi model ini lebih kuat dalam menangani overfitting dibanding satu decision tree saja.
@@ -168,7 +167,7 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     - Waktu training bisa lebih lama dibanding model sederhana.
     - Tidak cocok kalau data banyak noise.
 
-3. Logistic Regression
+3. Logistic Regression<br>
     Logistic Regression adalah model dasar yang sering digunakan dalam klasifikasi biner. Walaupun namanya "regression", model ini bukan untuk memprediksi angka, tapi Logistic Regression adalah model klasifikasi dasar yang menghitung probabilitas yang termasuk dalam suatu kelas (misalnya, terkena diabetes atau tidak). Model ini cukup interpretatif dan sering digunakan sebagai baseline dalam banyak proyek klasifikasi.
 
     Cara kerjanya adalah menghitung peluang (probabilitas) seseorang terkena diabetes berdasarkan nilai fitur-fitur seperti kadar glukosa, tekanan darah, dll. Jika probabilitasnya di atas 0.5, maka model akan memprediksi bahwa orang tersebut terkena diabetes (label = 1).
@@ -192,10 +191,13 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     Namun, pada awalnya performa Logistic Regression jauh lebih rendah dibandingkan dua model lainnya. Nilai akurasinya hanya 76.89%, jauh di bawah KNN dan Random Forest yang mencapai hampir 99%.
 
     Untuk meningkatkan performa, dilakukan hyperparameter tuning menggunakan teknik Grid Search. Fokus tuning diarahkan pada pemilihan penalti dan solver. Setelah eksplorasi parameter, diperoleh kombinasi terbaik:
-
+   
+    ```python
     Best Parameters: {'l1_ratio': 0.1, 'penalty': 'elasticnet', 'solver': 'saga'}
-
+    ```
+    
     Namun, meskipun sudah dilakukan tuning, peningkatan akurasi masih terbatas, hanya mencapai 76.71%, menandakan bahwa model Logistic Regression kurang cocok untuk dataset ini dibanding model lainnya.
+   
 
 Berdasarkan evaluasi terhadap ketiga model yang telah dilatih yaitu K-Nearest Neighbors (KNN), Random Forest, dan Logistic Regression — model yang dipilih sebagai solusi terbaik untuk kasus prediksi diabetes ini adalah:
 
@@ -240,13 +242,13 @@ Pada tahap ini, evaluasi model dilakukan untuk memahami seberapa baik kinerja mo
   ![F1-Score](https://github.com/user-attachments/assets/7a8a4a0e-64de-464e-a8ea-9981bb315b58)
 
   Keterangan:
-    TP = True Positive (prediksi positif yang benar)
-    TN = True Negative (prediksi negatif yang benar)
-    FP = False Positive (prediksi positif yang salah)
-    FN = False Negative (prediksi negatif yang salah)
+    - TP = True Positive (prediksi positif yang benar)
+    = TN = True Negative (prediksi negatif yang benar)
+    - FP = False Positive (prediksi positif yang salah)
+    - FN = False Negative (prediksi negatif yang salah)
 
 ### Kenapa Menggunakan Metrik Evaluasi ?
-1. Accuracy saja tidak cukup.
+1. Accuracy saja tidak cukup.<br>
    Karena ini adalah kasus medis, konsekuensi dari kesalahan prediksi sangat penting:
     - False Positive (prediksi mengidap, padahal tidak) bisa menyebabkan kecemasan dan pengobatan yang tidak perlu.
     - False Negative (prediksi tidak mengidap, padahal mengidap) lebih berbahaya karena pasien tidak ditangani padahal perlu.
@@ -255,10 +257,10 @@ Pada tahap ini, evaluasi model dilakukan untuk memahami seberapa baik kinerja mo
     - Precision → Penting agar tidak terlalu banyak pasien yang sehat dikira sakit.
     - F1-Score → Dipakai untuk menyeimbangkan keduanya.
 
-2. Model terbaik bukan hanya yang punya akurasi tinggi
+2. Model terbaik bukan hanya yang punya akurasi tinggi.<br>
    evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
 
-3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.
+3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.<br>
    Metrik tidak langsung menjawab hubungan antar fitur, tetapi membantu menilai dampak jika suatu fitur diubah, dihapus, atau diprioritaskan.
 
    
