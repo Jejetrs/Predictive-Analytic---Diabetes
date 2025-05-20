@@ -9,11 +9,11 @@ import joblib
 st.set_page_config(page_title="Diabetes Prediction", layout="wide")
 
 # Load dataset dan model machine learning
-df = pd.read_csv("app/cleaned_dataset/Cleaned_Healthcare_Diabetes.csv")
-knn_model = joblib.load('app/model/knn_model.pkl')
-rf_model = joblib.load('app/model/rf_model.pkl')
-logreg_model = joblib.load('app/model/lr_model.pkl') 
-scaler = joblib.load('app/model/scaler.pkl')
+df = pd.read_csv("cleaned_dataset/Cleaned_Healthcare_Diabetes.csv")
+knn_model = joblib.load('model/knn_model.pkl')
+rf_model = joblib.load('model/rf_model.pkl')
+logreg_model = joblib.load('model/lr_model.pkl') 
+scaler = joblib.load('model/scaler.pkl')
 
 # --- CUSTOM CSS ---
 st.markdown("""
@@ -128,7 +128,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # SIDEBAR
-st.sidebar.image("app/diabetes-ribbonblue.jpg", use_column_width=True, caption="Stay Healthy!")
+st.sidebar.image("diabetes-ribbonblue.jpg", use_column_width=True, caption="Stay Healthy!")
 
 st.sidebar.markdown("""
 ### About This App
@@ -240,7 +240,7 @@ with tab2:
             st.markdown('</div>', unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
-            model_option = st.selectbox("Choose Prediction Model", ("KNN", "Random Forest", "Logistic Regression"))
+            model_option = st.selectbox("Choose Prediction Model", ("KNN - recommended", "Random Forest", "Logistic Regression"))
 
             submitted = st.form_submit_button("Predict")
 
