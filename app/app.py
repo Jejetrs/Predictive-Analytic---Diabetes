@@ -9,11 +9,11 @@ import joblib
 st.set_page_config(page_title="Diabetes Prediction", layout="wide")
 
 # Load dataset dan model machine learning
-df = pd.read_csv("../app/cleaned_dataset/Cleaned_Healthcare_Diabetes.csv")
-knn_model = joblib.load('../app/model/knn_model.pkl')
-rf_model = joblib.load('../app/model/rf_model.pkl')
-logreg_model = joblib.load('../app/model/lr_model.pkl') 
-scaler = joblib.load('../app/model/scaler.pkl')
+df = pd.read_csv("app/cleaned_dataset/Cleaned_Healthcare_Diabetes.csv")
+knn_model = joblib.load('app/model/knn_model.pkl')
+rf_model = joblib.load('app/model/rf_model.pkl')
+logreg_model = joblib.load('app/model/lr_model.pkl') 
+scaler = joblib.load('app/model/scaler.pkl')
 
 # --- CUSTOM CSS ---
 st.markdown("""
