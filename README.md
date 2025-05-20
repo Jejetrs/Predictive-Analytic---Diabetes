@@ -1,11 +1,13 @@
 # Laporan Proyek Machine Learning - Jessica Theresia
 ## Domain Proyek
 
-Diabetes merupakan salah satu penyakit kronis yang menjadi penyebab utama kematian di seluruh dunia. Menurut data dari WHO, pada tahun 2021, sekitar 537 juta orang dewasa hidup dengan diabetes, dan jumlah ini diprediksi akan meningkat secara signifikan di tahun-tahun mendatang. Penyakit ini sering tidak terdeteksi pada tahap awal karena gejalanya yang tidak spesifik, yang kemudian dapat berkembang menjadi komplikasi serius seperti gagal ginjal, kebutaan, serangan jantung, dan amputasi anggota tubuh.
+Diabetes merupakan salah satu penyakit kronis paling serius yang menjadi penyebab utama kematian di seluruh dunia. Berdasarkan laporan International Diabetes Federation (IDF) Diabetes Atlas, pada tahun 2024 terdapat 589 juta orang dewasa (usia 20–79 tahun) yang hidup dengan diabetes, atau setara dengan 1 dari 9 orang dewasa di dunia. Jumlah ini diprediksi meningkat menjadi 853 juta pada tahun 2050. Diabetes juga menjadi penyebab 3,4 juta kematian di tahun 2024, atau sekitar 1 kematian setiap 9 detik. Selain itu, total pengeluaran untuk penanganan diabetes mencapai USD 1 triliun, meningkat 338% dibandingkan 17 tahun sebelumnya.
 
-Masalah utama dalam penanganan diabetes adalah keterlambatan diagnosis dan penanganan dini. Banyak individu yang tidak menyadari bahwa mereka menderita diabetes sampai terjadi komplikasi serius. Hal ini menjadi hambatan besar dalam upaya pencegahan dan pengelolaan penyakit secara efektif.
+Yang lebih mengkhawatirkan, banyak kasus diabetes yang tidak terdiagnosis pada tahap awal. Gejala yang tidak spesifik membuat penderita sering kali tidak menyadari keberadaan penyakit ini hingga muncul komplikasi berat seperti gagal ginjal, kebutaan, penyakit jantung, bahkan amputasi. WHO mencatat bahwa 47% kematian akibat diabetes terjadi sebelum usia 70 tahun, dan lebih dari 530.000 kematian akibat penyakit ginjal juga disebabkan oleh diabetes.
 
-Salah satu solusi yang dapat ditawarkan adalah penggunaan teknologi Machine Learning untuk memprediksi kemungkinan seseorang menderita diabetes berdasarkan data kesehatan dan demografi. Dalam proyek ini, dilakukan pengembangan model machine learning untuk memprediksi apakah seseorang berisiko terkena diabetes berdasarkan data medis sederhana.
+Masalah utama dalam penanganan diabetes adalah keterlambatan diagnosis dan rendahnya cakupan pengobatan, terutama di negara berpenghasilan rendah dan menengah. Pada tahun 2022, 59% penderita diabetes usia di atas 30 tahun tidak menjalani pengobatan, menunjukkan adanya celah besar dalam sistem deteksi dan penanganan dini.
+
+Salah satu pendekatan inovatif untuk menjawab tantangan ini adalah penggunaan algoritma Machine Learning (ML) untuk memprediksi risiko diabetes berdasarkan data kesehatan dan demografi. Dalam proyek ini, dikembangkan sebuah model prediktif yang mampu mengklasifikasikan apakah seseorang memiliki risiko menderita diabetes, menggunakan data medis yang relatif sederhana namun informatif. Model ini diharapkan dapat menjadi alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung skrining awal.
 
 **Mengapa Masalah Ini Harus Diselesaikan**
 - Deteksi dini dapat menyelamatkan nyawa dan menurunkan beban biaya kesehatan.
