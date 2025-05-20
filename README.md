@@ -300,9 +300,10 @@ Aplikasi memerlukan library berikut untuk dijalankan:
 - joblib
 - matplotlib
 
+ ```
 Struktur folder proyek yang kamu perlukan untuk menjalankan deployment secara lokal
 predictive-analytic---diabetes/
-├── app.py                               # File utama untuk menjalankan aplikasi Streamlit
+├── app.py                              # File utama untuk menjalankan aplikasi Streamlit
 ├── requirements.txt                    # Daftar dependencies Python
 ├── diabetes-ribbonblue.jpg             # Gambar ikon atau header visual di halaman
 ├── cleaned_dataset/
@@ -312,6 +313,7 @@ predictive-analytic---diabetes/
 │   ├── lr_model.pkl                    # Model Logistic Regression terlatih
 │   ├── knn_model.pkl                   # Model K-Nearest Neighbors terlatih
 │   └── scaler.pkl                      # Scaler (misal StandardScaler) yang digunakan sebelum prediksi
+ ```
 
 #####🛠️ Cara Menjalankan Aplikasi Secara Lokal
 
