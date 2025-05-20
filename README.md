@@ -289,6 +289,7 @@ Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih men
 
 ## Deployment
 
+Link deploy : https://predictive-analytic-diabetes.streamlit.app/
 Aplikasi ini telah dikembangkan menggunakan Streamlit untuk memberikan antarmuka interaktif dalam memvisualisasikan data dan memprediksi risiko diabetes secara interaktif, user dapat melihat visualisasi data dan mencoba hasil prediksi dengan 3 skema model.
 Aplikasi memerlukan library berikut untuk dijalankan:
 - streamlit
@@ -299,4 +300,22 @@ Aplikasi memerlukan library berikut untuk dijalankan:
 - joblib
 - matplotlib
 
-Link deploy : https://predictive-analytic-diabetes.streamlit.app/
+Struktur folder proyek yang kamu perlukan untuk menjalankan deployment secara lokal
+predictive-analytic---diabetes/
+├── app.py                               # File utama untuk menjalankan aplikasi Streamlit
+├── requirements.txt                    # Daftar dependencies Python
+├── diabetes-ribbonblue.jpg             # Gambar ikon atau header visual di halaman
+├── cleaned_dataset/
+│   └── Cleaned_Healthcare_Diabetes.csv # Dataset yang sudah dibersihkan untuk ditampilkan dan diprediksi
+├── model/
+│   ├── rf_model.pkl                    # Model Random Forest terlatih
+│   ├── lr_model.pkl                    # Model Logistic Regression terlatih
+│   ├── knn_model.pkl                   # Model K-Nearest Neighbors terlatih
+│   └── scaler.pkl                      # Scaler (misal StandardScaler) yang digunakan sebelum prediksi
+
+#####🛠️ Cara Menjalankan Aplikasi Secara Lokal
+
+1. Pastikan file app.py ada di root folder
+2. Aktifkan virtual environment (opsional tapi direkomendasikan)
+3. Install semua dependency dengan : pip install -r requirements.txt
+4. Jalankan aplikasi Streamlit di terminal code editor : streamlit run app.py
