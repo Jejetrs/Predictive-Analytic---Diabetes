@@ -1,6 +1,4 @@
-# Predictive-Analytic---Diabetes
-
-# Laporan Proyek Machine Learning - Jessica Theresia
+# Laporan Proyek Machine Learning - Nama Anda
 
 ## Domain Proyek
 
@@ -87,8 +85,8 @@ EDA dilakukan menggunakan visualisasi distribusi, korelasi antar fitur, dan dete
     - Glucose, BMI, dan Age menunjukkan korelasi positif yang kuat dengan Outcome.
     - Variabel seperti Skin Thickness atau Insulin memiliki korelasi lebih lemah, namun tetap relevan secara klinis.
 
-![Outcome percentage](image-1.png)
-![Heatmap](image-2.png)
+![Outcome_percentage](https://github.com/user-attachments/assets/fcc510e7-a463-4453-9e45-11196228932b)
+![Heatmap](https://github.com/user-attachments/assets/e465efd9-b8be-4837-8bf9-aa2f284ab394)
 
 ## Data Preparation
 Pada bagian ini dimaksudkan untuk menerapkan dan menyebutkan teknik data preparation yang dilakukan.
@@ -127,7 +125,10 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     knn_model = KNeighborsClassifier(n_neighbors=5, weights='distance')
     knn_model.fit(X_train_resampled, y_train_resampled)
     y_pred_knn = knn_model.predict(X_test_scaled)
+    ```
 
+    nilai K = 5 adalah nilai default dari KNeighborsClassifier dan sering jadi pilihan awal karena cukup kecil untuk menangkap pola lokal,tidak terlalu kecil untuk menghindari overfitting (misal K=1 terlalu sensitif) dan tidak terlalu besar yang bisa menyebabkan underfitting.
+    
     Kelebihan:
     - Sederhana dan tidak butuh banyak asumsi.
     - Cocok saat data tidak terlalu besar.
@@ -145,6 +146,9 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     rf_model = RandomForestClassifier(n_estimators=100, random_state=101)
     rf_model.fit(X_train_resampled, y_train_resampled)
     y_pred_rf = rf_model.predict(X_test_scaled)
+    ```
+
+    Pada model ini, agar hasil eksperimen bisa reproducible (bisa diulang dengan hasil yang sama), kita beri angka tetap untuk random_state. Angka 101 sebenarnya arbitrary (bebas). Bisa pakai angka apa saja (misalnya: 0, 42, 123). Tujuannya hanya untuk konsistensi hasil saat kita melatih ulang model, menulis laporan, dan membandingkan model.
 
     Kelebihan:
     - Sangat kuat untuk data yang kompleks.
@@ -166,6 +170,9 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     log_model = LogisticRegression(max_iter=1000)
     log_model.fit(X_train_resampled, y_train_resampled)
     y_pred_log = log_model.predict(X_test_scaled)
+    ```
+
+    Model Logistic Regression ini menggunakan proses optimasi iteratif (seperti Gradient Descent) untuk menemukan koefisien terbaik. Secara default, max_iter = 100 (tergantung solver). Namun, jika data cukup kompleks, model bisa belum konvergen (belum menemukan solusi optimal) dalam 100 iterasi.Oleh karena itu, max_iter=1000 dipilih agar memberi cukup ruang untuk algoritma menyelesaikan training dan menghindari peringatan ConvergenceWarning.
 
     Kelebihan:
     - Sederhana dan mudah diinterpretasikan.
