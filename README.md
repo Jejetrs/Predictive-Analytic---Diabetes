@@ -287,6 +287,14 @@ Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih men
 
 ## Deployment
 
-Aplikasi ini telah dikembangkan menggunakan Streamlit untuk visualisasi data dan prediksi risiko diabetes secara interaktif.
+Aplikasi ini telah dikembangkan menggunakan Streamlit untuk memberikan antarmuka interaktif dalam memvisualisasikan data dan memprediksi risiko diabetes secara interaktif, user dapat melihat visualisasi data dan mencoba hasil prediksi dengan 3 skema model.
+Aplikasi memerlukan library berikut untuk dijalankan:
+- streamlit
+- pandas
+- numpy
+- plotly
+- scikit-learn
+- joblib
+- matplotlib
 
 Link deploy : https://predictive-analytic-diabetes.streamlit.app/
