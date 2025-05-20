@@ -218,30 +218,21 @@ Pada tahap ini, evaluasi model dilakukan untuk memahami seberapa baik kinerja mo
 
 - **Accuracy**: Persentase prediksi yang benar terhadap total prediksi.  
   Formula:  
-  $$
-  \text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}
-  $$
+  ![Accuracy](https://github.com/user-attachments/assets/4f0bdd4a-12db-4cde-862c-65d5cccf8ea9)
 
 - **Precision**: Proporsi positif yang diprediksi benar dari seluruh prediksi positif.  
   Formula:  
-  $$
-  \text{Precision} = \frac{TP}{TP + FP}
-  $$
+  ![Precision](https://github.com/user-attachments/assets/4d1e0bf6-cf26-4286-a4cb-b1bf476ba0e5)
 
 - **Recall**: Proporsi positif yang diprediksi benar dari seluruh kasus aktual positif.  
   Formula:  
-  $$
-  \text{Recall} = \frac{TP}{TP + FN}
-  $$
+  ![Recall](https://github.com/user-attachments/assets/8bfb5177-b2b0-41da-8e0d-c42c773dfa04)
 
 - **F1-Score**: Harmonik rata-rata dari precision dan recall.  
   Formula:  
-  $$
-  \text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}}
-  $$
+  ![F1-Score](https://github.com/user-attachments/assets/7a8a4a0e-64de-464e-a8ea-9981bb315b58)
 
-
-Hasil Evaluasi Model
+**Hasil Evaluasi Model**
 Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 
 | Model               | Accuracy | Precision | Recall | F1 Score |
@@ -252,11 +243,9 @@ Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 
 Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE dan data training yang telah diskalakan.
 
-🔍 Interpretasi dan Insight
+**Interpretasi dan Insight**
 - KNN menjadi model terbaik karena mencetak skor tertinggi secara konsisten di seluruh metrik, terutama recall yang mencapai 1.00. Artinya, model tidak melewatkan satu pun pasien yang benar-benar mengidap diabetes dalam prediksinya (False Negative = 0). Hal ini sangat penting dalam konteks medis, karena salah satu tujuan utama adalah mendeteksi semua kasus positif secara tepat.
-
 - Random Forest juga cukup baik, namun sedikit kalah di aspek precision, yang berarti masih terdapat sejumlah kecil false positive.
-
 - Logistic Regression memberikan performa paling rendah dalam semua metrik, meskipun telah dilakukan hyperparameter tuning. Ini menunjukkan model ini kurang cocok untuk menangkap pola non-linear atau kompleksitas data dalam kasus ini.
 
 ## Kesimpulan
