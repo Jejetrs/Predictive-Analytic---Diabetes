@@ -128,7 +128,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # SIDEBAR
-st.sidebar.image("diabetes-ribbonblue.jpg", use_column_width=True, caption="Stay Healthy!")
+st.sidebar.image("app/diabetes-ribbonblue.jpg", use_column_width=True, caption="Stay Healthy!")
 
 st.sidebar.markdown("""
 ### About This App
