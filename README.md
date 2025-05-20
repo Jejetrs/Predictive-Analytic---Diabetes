@@ -302,7 +302,7 @@ Aplikasi memerlukan library berikut untuk dijalankan:
 
  ```
 Struktur folder proyek yang kamu perlukan untuk menjalankan deployment secara lokal
-predictive-analytic---diabetes/
+app/
 ├── app.py                              # File utama untuk menjalankan aplikasi Streamlit
 ├── requirements.txt                    # Daftar dependencies Python
 ├── diabetes-ribbonblue.jpg             # Gambar ikon atau header visual di halaman
