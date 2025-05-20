@@ -38,7 +38,7 @@ Untuk menjawab permasalahan yang ada, proyek ini bertujuan untuk:
 2. Mengidentifikasi fitur atau atribut paling signifikan yang mempengaruhi hasil prediksi, guna memberikan wawasan tambahan dalam konteks medis dan pencegahan.
 3. Meningkatkan performa model melalui pemilihan algoritma yang tepat serta penerapan teknik seperti hyperparameter tuning dan handling class imbalance.
 4. Membandingkan kinerja berbagai algoritma klasifikasi, termasuk K-Nearest Neighbors, Random Forest, dan Logistic Regression, untuk menentukan model terbaik.
-5. Menghasilkan model dengan performa evaluasi optimal, dilihat dari metrik seperti akurasi, precision, recall, dan F1-score, sehingga hasil prediksi dapat dipercaya untuk mendukung keputusan klinis awal.
+5. Menghasilkan model dengan performa evaluasi optimal, dilihat dari metrik seperti akurasi, precision, recall, dan F1-score, sehingga hasil prediksi dapat dipercaya untuk mendukung keputusan awal.
 
 **“Solution Statement”**
 Untuk mewujudkan tujuan proyek, pendekatan yang digunakan adalah sebagai berikut:
@@ -59,9 +59,7 @@ Untuk mewujudkan tujuan proyek, pendekatan yang digunakan adalah sebagai berikut
 
 ## Data Understanding
 
-Sumber : https://www.kaggle.com/datasets/nanditapore/healthcare-diabetes.
-
-Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan dalam proyek. Sertakan juga sumber atau tautan untuk mengunduh dataset. Contoh: [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Restaurant+%26+consumer+data). 
+Dataset yang digunakan adalah Healthcare Diabetes Dataset dari Kaggle yang dapat diunduh di sini https://www.kaggle.com/datasets/nanditapore/healthcare-diabetes. Dataset erdiri dari 2768 baris dan 10 kolom fitur.
 
 ### Variabel-variabel pada dataset ini adalah sebagai berikut:
 | Fitur                     | Deskripsi                                          |
@@ -77,7 +75,7 @@ Paragraf awal bagian ini menjelaskan informasi mengenai data yang Anda gunakan d
 | Age                       | Usia pasien                                        |
 | Outcome                   | Target variabel (1 = diabetes, 0 = tidak diabetes) |
 
-### EDA
+### EDA dan Visualisasi Data
 EDA dilakukan menggunakan visualisasi distribusi, korelasi antar fitur, dan deteksi outlier. Berdasarkan EDA ditemukan :
 - Tidak terdapat nilai null secara eksplisit, namun terdapat nilai 0 pada kolom Glucose, BloodPressure, SkinThickness, Insulin, dan BMI yang secara medis tidak mungkin bernilai nol. Ini ditangani sebagai nilai yang perlu diimputasi.
 - Distribusi kelas Outcome: Sekitar 34.4% data menunjukkan pasien menderita diabetes, sedangkan sisanya tidak.
@@ -92,14 +90,23 @@ EDA dilakukan menggunakan visualisasi distribusi, korelasi antar fitur, dan dete
 Pada bagian ini dimaksudkan untuk menerapkan dan menyebutkan teknik data preparation yang dilakukan.
 
 **Proses data preparation yang dilakukan**
-1. Mengatasi nilai tidak valid (nol):
-Kolom seperti Glucose, BloodPressure, SkinThickness, Insulin, dan BMI diperlakukan sebagai fitur yang memiliki nilai tidak valid berupa nol. Nilai tersebut diimputasi menggunakan median dari masing-masing kolom.
+1. Menghapus Kolom yang Tidak Relevan
+Kolom Id dihapus karena tidak berkontribusi dalam proses prediksi.
 
-2. Scaling (Standardization):
-Semua fitur diskalakan menggunakan StandardScaler untuk menormalkan distribusi data, mengingat algoritma seperti Logistic Regression dan KNN sensitif terhadap skala.
+2. Mengatasi Nilai Tidak Valid (0)
+Kolom medis seperti Glucose, BloodPressure, SkinThickness, Insulin, dan BMI tidak seharusnya memiliki nilai nol. Nilai nol tersebut diganti dengan NaN, lalu diimputasi menggunakan median masing-masing kolom.
 
-3. Train-Test Split:
+3. Handling Outliers
+Digunakan metode Winsorizing berbasis IQR untuk mengatasi nilai outlier. Nilai di bawah Q1 - 1.5 * IQR dan di atas Q3 + 1.5 * IQR dibatasi (clipped) ke batas bawah dan atas.
+
+4. Split Data (Train-Test Split)
 Dataset dibagi menjadi 80% data pelatihan dan 20% data pengujian.
+
+5. Normalisasi Data
+Menggunakan StandardScaler untuk menormalkan fitur karena model seperti KNN dan Logistic Regression sensitif terhadap skala fitur.
+   
+6. Handling Data Imbalance
+Menggunakan SMOTE untuk oversampling kelas minoritas sehingga distribusi kelas menjadi seimbang (1:1).
 
 ## Modeling
 Pada tahap ini, saya menggunakan tiga algoritma machine learning yang cukup populer untuk kasus klasifikasi, yaitu:
@@ -190,7 +197,7 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
 
     Namun, meskipun sudah dilakukan tuning, peningkatan akurasi masih terbatas, hanya mencapai 76.71%, menandakan bahwa model Logistic Regression kurang cocok untuk dataset ini dibanding model lainnya.
 
-Berdasarkan evaluasi terhadap ketiga model yang telah dilatih — yaitu K-Nearest Neighbors (KNN), Random Forest, dan Logistic Regression — model yang dipilih sebagai solusi terbaik untuk kasus prediksi diabetes ini adalah:
+Berdasarkan evaluasi terhadap ketiga model yang telah dilatih yaitu K-Nearest Neighbors (KNN), Random Forest, dan Logistic Regression — model yang dipilih sebagai solusi terbaik untuk kasus prediksi diabetes ini adalah:
 
 **✅ K-Nearest Neighbors (KNN)**
 
@@ -216,22 +223,45 @@ Dibandingkan Random Forest (99.10%) dan Logistic Regression (76.89% sebelum tuni
 
 Pada tahap ini, evaluasi model dilakukan untuk memahami seberapa baik kinerja model klasifikasi dalam memprediksi data baru. Evaluasi model dilakukan dengan menggunakan metrik-metrik evaluasi klasifikasi berikut:
 
-- **Accuracy**: Persentase prediksi yang benar terhadap total prediksi.  
+- **Accuracy**: Akurasi adalah proporsi jumlah prediksi yang benar (positif dan negatif) dibandingkan dengan total prediksi. Cocok digunakan ketika distribusi kelas seimbang.
   Formula:  
   ![Accuracy](https://github.com/user-attachments/assets/4f0bdd4a-12db-4cde-862c-65d5cccf8ea9)
 
-- **Precision**: Proporsi positif yang diprediksi benar dari seluruh prediksi positif.  
+- **Precision**: Presisi mengukur seberapa akurat prediksi positif dari model. Artinya, dari semua yang diprediksi sebagai positif, berapa banyak yang benar-benar positif. Cocok ketika false positive lebih berdampak besar, misalnya pada diagnosa penyakit.
   Formula:  
   ![Precision](https://github.com/user-attachments/assets/4d1e0bf6-cf26-4286-a4cb-b1bf476ba0e5)
 
-- **Recall**: Proporsi positif yang diprediksi benar dari seluruh kasus aktual positif.  
+- **Recall**: Recall menunjukkan seberapa banyak dari kasus positif yang berhasil dideteksi dengan benar oleh model. Cocok ketika false negative berbahaya, seperti gagal mendeteksi pasien sakit.
   Formula:  
   ![Recall](https://github.com/user-attachments/assets/8bfb5177-b2b0-41da-8e0d-c42c773dfa04)
 
-- **F1-Score**: Harmonik rata-rata dari precision dan recall.  
+- **F1-Score**: F1-Score adalah rata-rata harmonik dari Precision dan Recall. Digunakan saat membutuhkan keseimbangan antara presisi dan recall
   Formula:  
   ![F1-Score](https://github.com/user-attachments/assets/7a8a4a0e-64de-464e-a8ea-9981bb315b58)
 
+  Keterangan:
+    TP = True Positive (prediksi positif yang benar)
+    TN = True Negative (prediksi negatif yang benar)
+    FP = False Positive (prediksi positif yang salah)
+    FN = False Negative (prediksi negatif yang salah)
+
+### Kenapa Menggunakan Metrik Evaluasi ?
+1. Accuracy saja tidak cukup.
+   Karena ini adalah kasus medis, konsekuensi dari kesalahan prediksi sangat penting:
+    - False Positive (prediksi mengidap, padahal tidak) bisa menyebabkan kecemasan dan pengobatan yang tidak perlu.
+    - False Negative (prediksi tidak mengidap, padahal mengidap) lebih berbahaya karena pasien tidak ditangani padahal perlu.
+   Perlu diperhatikan juga:
+    - Recall → Penting untuk memastikan pasien yang benar-benar sakit tidak terlewat.
+    - Precision → Penting agar tidak terlalu banyak pasien yang sehat dikira sakit.
+    - F1-Score → Dipakai untuk menyeimbangkan keduanya.
+
+2. Model terbaik bukan hanya yang punya akurasi tinggi
+   evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
+
+3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.
+   Metrik tidak langsung menjawab hubungan antar fitur, tetapi membantu menilai dampak jika suatu fitur diubah, dihapus, atau diprioritaskan.
+
+   
 **Hasil Evaluasi Model**
 Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 
@@ -258,4 +288,5 @@ Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih men
 ## Deployment
 
 Aplikasi ini telah dikembangkan menggunakan Streamlit untuk visualisasi data dan prediksi risiko diabetes secara interaktif.
-Link : 
+
+Link deploy : 
