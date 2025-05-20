@@ -205,19 +205,19 @@ Berdasarkan evaluasi terhadap ketiga model yang telah dilatih yaitu K-Nearest Ne
 
 Alasan Pemilihan KNN sebagai Model Terbaik:
 
-- Akurasi Tinggi
+- Akurasi Tinggi<br>
 KNN berhasil mencapai akurasi sebesar 98.91%. Artinya, model ini mampu memprediksi dengan benar hampir seluruh data uji, menunjukkan kinerjanya sangat baik dalam memahami pola pada data.
 
-- Performa Konsisten Tanpa Overfitting
+- Performa Konsisten Tanpa Overfitting<br>
 Meskipun akurasinya sangat tinggi, KNN tetap menunjukkan stabilitas dan tidak overfitting karena menggunakan bobot berdasarkan jarak, membuat prediksinya lebih “bijak” terhadap tetangga terdekat yang paling relevan.
 
-- Memprioritaskan recall
+- Memprioritaskan recall<br>
 Recall KNN 0.9948 artinya, hampir semua kasus positif (fraud/penyakit) berhasil dideteksi dengan benar. Ini sangat penting untuk skenario seperti deteksi penyakit, di mana tidak mendeteksi pasien yang sebenarnya sakit dapat berbahaya.
   
-- Tidak Memerlukan Asumsi Khusus
+- Tidak Memerlukan Asumsi Khusus<br>
 KNN tidak mengharuskan asumsi seperti linearitas hubungan antar fitur (berbeda dengan Logistic Regression). Ini sangat membantu jika data bersifat non-linear atau memiliki distribusi yang tidak biasa.
 
-- Kemudahan Implementasi dan Interpretasi
+- Kemudahan Implementasi dan Interpretasi<br>
 Secara konsep, KNN sangat mudah dipahami oleh praktisi maupun pihak non-teknis: prediksi dilakukan dengan melihat mayoritas tetangga terdekat. Ini penting jika model akan digunakan dalam sistem real dengan pengguna umum seperti tenaga medis.
 
 ## Evaluation
@@ -275,8 +275,8 @@ Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE dan data training yang telah diskalakan.
 
 **Interpretasi dan Insight**
-- KNN menjadi model terbaik karena mencetak skor tertinggi secara konsisten di seluruh metrik, terutama recall yang mencapai 1.00. Artinya, model tidak melewatkan satu pun pasien yang benar-benar mengidap diabetes dalam prediksinya (False Negative = 0). Hal ini sangat penting dalam konteks medis, karena salah satu tujuan utama adalah mendeteksi semua kasus positif secara tepat.
-- Random Forest juga cukup baik, namun sedikit kalah di aspek precision, yang berarti masih terdapat sejumlah kecil false positive.
+- KNN menjadi model yang direkomendasikan dari ketiga model dengan memprioritaskan recall tertinggi yaitu 0.9948 artinya, hampir semua kasus positif (penyakit) berhasil dideteksi dengan benar. Artinya, model tidak melewatkan satu pun pasien yang benar-benar mengidap diabetes dalam prediksinya (False Negative = 0). Hal ini sangat penting dalam konteks medis, karena salah satu tujuan utama adalah mendeteksi semua kasus positif secara tepat.
+- Random Forest juga cukup baik, namun sedikit kalah di aspek precision dan recall , yang berarti masih terdapat sejumlah kecil false positive.
 - Logistic Regression memberikan performa paling rendah dalam semua metrik, meskipun telah dilakukan hyperparameter tuning. Ini menunjukkan model ini kurang cocok untuk menangkap pola non-linear atau kompleksitas data dalam kasus ini.
 
 ## Kesimpulan
