@@ -1,5 +1,4 @@
-# Laporan Proyek Machine Learning - Nama Anda
-
+# Laporan Proyek Machine Learning - Jessica Theresia
 ## Domain Proyek
 
 Diabetes merupakan salah satu penyakit kronis yang menjadi penyebab utama kematian di seluruh dunia. Menurut data dari WHO, pada tahun 2021, sekitar 537 juta orang dewasa hidup dengan diabetes, dan jumlah ini diprediksi akan meningkat secara signifikan di tahun-tahun mendatang. Penyakit ini sering tidak terdeteksi pada tahap awal karena gejalanya yang tidak spesifik, yang kemudian dapat berkembang menjadi komplikasi serius seperti gagal ginjal, kebutaan, serangan jantung, dan amputasi anggota tubuh.
@@ -290,4 +289,4 @@ Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih men
 
 Aplikasi ini telah dikembangkan menggunakan Streamlit untuk visualisasi data dan prediksi risiko diabetes secara interaktif.
 
-Link deploy : 
+Link deploy : https://predictive-analytic-diabetes.streamlit.app/
