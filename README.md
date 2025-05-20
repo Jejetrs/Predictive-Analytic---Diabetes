@@ -125,19 +125,19 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
 1. K-Nearest Neighbors (KNN)<br>
     KNN adalah model yang sangat intuitif dan mudah dipahami. Cara kerjanya yaitu mencari sejumlah "tetangga terdekat" dari sebuah titik data baru, lalu memprediksi kelasnya berdasarkan mayoritas label dari tetangga tersebut. Jarak yang digunakan untuk mengukur kedekatan biasanya adalah Euclidean distance.
     
-    Pada model ini, KNN dikonfigurasi dengan 5 tetangga terdekat dan menggunakan bobot berdasarkan jarak (weights='distance'), sehingga tetangga yang lebih dekat memiliki pengaruh lebih besar.
+    Pada model ini, KNN dikonfigurasi dengan 15 tetangga terdekat dan menggunakan bobot berdasarkan jarak (weights='distance'), sehingga tetangga yang lebih dekat memiliki pengaruh lebih besar.
 
     ```python
-    knn_model = KNeighborsClassifier(n_neighbors=5, weights='distance')
+    knn_model = KNeighborsClassifier(n_neighbors=15, weights='distance')
     knn_model.fit(X_train_resampled, y_train_resampled)
     y_pred_knn = knn_model.predict(X_test_scaled)
     ```
 
-    nilai K = 5 adalah nilai default dari KNeighborsClassifier dan sering jadi pilihan awal karena cukup kecil untuk menangkap pola lokal,tidak terlalu kecil untuk menghindari overfitting (misal K=1 terlalu sensitif) dan tidak terlalu besar yang bisa menyebabkan underfitting.
+    Pemilihan nilai k=15 bertujuan untuk menstabilkan prediksi. Nilai k yang terlalu kecil (misalnya 3 atau 5) dapat membuat model terlalu sensitif terhadap noise (overfitting), sementara nilai yang lebih besar seperti 15 memungkinkan model menangkap pola umum dengan lebih baik.
     
     Kelebihan:
     - Sederhana dan tidak butuh banyak asumsi.
-    - Cocok saat data tidak terlalu besar.
+    - Cocok untuk dataset berukuran kecil hingga sedang..
 
     Kekurangan:
     - Performanya bisa turun jika datanya banyak (scalability).
@@ -154,18 +154,18 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     y_pred_rf = rf_model.predict(X_test_scaled)
     ```
 
-    Pada model ini, agar hasil eksperimen bisa reproducible (bisa diulang dengan hasil yang sama), kita beri angka tetap untuk random_state. Angka 101 sebenarnya arbitrary (bebas). Bisa pakai angka apa saja (misalnya: 0, 42, 123). Tujuannya hanya untuk konsistensi hasil saat kita melatih ulang model, menulis laporan, dan membandingkan model.
+    Penggunaan random_state=101 bertujuan agar eksperimen bersifat reproducible (hasil konsisten saat dijalankan ulang), meskipun angkanya bebas (arbitrary).
 
     Kelebihan:
-    - Sangat kuat untuk data yang kompleks.
+    - Sangat kuat untuk data yang kompleks dan interaksi non-linier.
     - Tidak terlalu sensitif terhadap data outlier atau noise.
-    - Bisa menunjukkan pentingnya fitur-fitur (feature importance).
+    - Mampu mengukur pentingnya fitur (feature importance).
 
     Kekurangan:
     - Kurang interpretatif (agak sulit dijelaskan ke non-teknis).
     - Memerlukan sumber daya lebih besar untuk pelatihan.
     - Waktu training bisa lebih lama dibanding model sederhana.
-    - Tidak cocok kalau data banyak noise.
+    - Performa bisa menurun jika data terlalu noisy.
 
 3. Logistic Regression<br>
     Logistic Regression adalah model dasar yang sering digunakan dalam klasifikasi biner. Walaupun namanya "regression", model ini bukan untuk memprediksi angka, tapi Logistic Regression adalah model klasifikasi dasar yang menghitung probabilitas yang termasuk dalam suatu kelas (misalnya, terkena diabetes atau tidak). Model ini cukup interpretatif dan sering digunakan sebagai baseline dalam banyak proyek klasifikasi.
@@ -178,7 +178,7 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     y_pred_log = log_model.predict(X_test_scaled)
     ```
 
-    Model Logistic Regression ini menggunakan proses optimasi iteratif (seperti Gradient Descent) untuk menemukan koefisien terbaik. Secara default, max_iter = 100 (tergantung solver). Namun, jika data cukup kompleks, model bisa belum konvergen (belum menemukan solusi optimal) dalam 100 iterasi.Oleh karena itu, max_iter=1000 dipilih agar memberi cukup ruang untuk algoritma menyelesaikan training dan menghindari peringatan ConvergenceWarning.
+    Parameter max_iter=1000 digunakan untuk memastikan proses optimasi konvergen, terutama jika dataset kompleks. Nilai default (100) sering kali tidak cukup dan menghasilkan peringatan ConvergenceWarning.
 
     Kelebihan:
     - Sederhana dan mudah diinterpretasikan.
@@ -205,21 +205,20 @@ Berdasarkan evaluasi terhadap ketiga model yang telah dilatih yaitu K-Nearest Ne
 
 Alasan Pemilihan KNN sebagai Model Terbaik:
 
-- Akurasi Tertinggi
-KNN berhasil mencapai akurasi sebesar 99.28%, tertinggi di antara semua model yang diuji.
-Artinya, model ini mampu memprediksi dengan benar hampir seluruh data uji, menunjukkan kinerjanya sangat baik dalam memahami pola pada data.
+- Akurasi Tinggi
+KNN berhasil mencapai akurasi sebesar 98.91%. Artinya, model ini mampu memprediksi dengan benar hampir seluruh data uji, menunjukkan kinerjanya sangat baik dalam memahami pola pada data.
 
 - Performa Konsisten Tanpa Overfitting
 Meskipun akurasinya sangat tinggi, KNN tetap menunjukkan stabilitas dan tidak overfitting karena menggunakan bobot berdasarkan jarak, membuat prediksinya lebih “bijak” terhadap tetangga terdekat yang paling relevan.
 
+- Memprioritaskan recall
+Recall KNN 0.9948 artinya, hampir semua kasus positif (fraud/penyakit) berhasil dideteksi dengan benar. Ini sangat penting untuk skenario seperti deteksi penyakit, di mana tidak mendeteksi pasien yang sebenarnya sakit dapat berbahaya.
+  
 - Tidak Memerlukan Asumsi Khusus
 KNN tidak mengharuskan asumsi seperti linearitas hubungan antar fitur (berbeda dengan Logistic Regression). Ini sangat membantu jika data bersifat non-linear atau memiliki distribusi yang tidak biasa.
 
 - Kemudahan Implementasi dan Interpretasi
-Secara konsep, KNN sangat mudah dipahami oleh praktisi maupun pihak non-teknis: prediksi dilakukan dengan melihat mayoritas tetangga terdekat. Ini penting jika model akan digunakan dalam sistem riil dengan pengguna umum seperti tenaga medis.
-
-- Mengalahkan Model Lain Secara Konsisten
-Dibandingkan Random Forest (99.10%) dan Logistic Regression (76.89% sebelum tuning), KNN tetap unggul, bahkan tanpa tuning yang kompleks.
+Secara konsep, KNN sangat mudah dipahami oleh praktisi maupun pihak non-teknis: prediksi dilakukan dengan melihat mayoritas tetangga terdekat. Ini penting jika model akan digunakan dalam sistem real dengan pengguna umum seperti tenaga medis.
 
 ## Evaluation
 
@@ -269,9 +268,9 @@ Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 
 | Model               | Accuracy | Precision | Recall | F1 Score |
 |---------------------|----------|-----------|--------|----------|
-| KNN                 | 0.993    | 0.990     | 1.000  | 0.995    |
-| Random Forest       | 0.991    | 0.980     | 1.000  | 0.990    |
-| Logistic Regression | 0.769    | 0.648     | 0.641  | 0.644    |
+| KNN                 | 0.98     | 0.97      | 0.99   | 0.98     |
+| Random Forest       | 0.99     | 0.98      | 0.98   | 0.98     |
+| Logistic Regression | 0.76     | 0.64      | 0.72   | 0.68     |
 
 Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE dan data training yang telah diskalakan.
 
@@ -283,7 +282,7 @@ Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih men
 ## Kesimpulan
 
 - Proyek ini berhasil membangun model prediksi diabetes dengan menggunakan data medis sederhana.
-- Dari tiga model yang diuji (KNN, Random Forest, Logistic Regression), KNN memberikan performa terbaik dengan akurasi 99.3% dan recall sempurna 1.0, menjadikannya pilihan utama untuk digunakan dalam prediksi risiko diabetes.
+- Dari tiga model yang diuji (KNN, Random Forest, Logistic Regression), KNN dijadikan model terbaik dengan akurasi 98.91% dan recall tertinggi 99.47%, menjadikannya pilihan utama untuk digunakan dalam prediksi risiko diabetes.
 - Penanganan nilai nol yang tidak valid dan imbalance data menggunakan median imputation dan SMOTE sangat berkontribusi dalam meningkatkan performa model.
 - Hyperparameter tuning pada Logistic Regression memberikan sedikit peningkatan, tetapi model ini tetap kurang cocok dibanding dua model lainnya untuk dataset ini.
 
