@@ -274,136 +274,136 @@ Secara konsep, KNN sangat mudah dipahami oleh praktisi maupun pihak non-teknis: 
 
 Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam memprediksi risiko diabetes pada data baru, serta untuk memastikan bahwa model yang dibangun memenuhi tujuan yang lebih luas sesuai dengan Business Understanding. Evaluasi ini melibatkan analisis hasil model berdasarkan metrik-metrik evaluasi yang relevan dalam konteks medis, di mana kesalahan prediksi dapat memiliki dampak signifikan.
 
-1. Metrik Evaluasi
-Metrik evaluasi digunakan untuk mengukur dan menilai performa model dalam konteks klasifikasi. Dalam kasus ini, kami menggunakan beberapa metrik untuk mengevaluasi model secara komprehensif:
+1. Metrik Evaluasi <br>
+  Metrik evaluasi digunakan untuk mengukur dan menilai performa model dalam konteks klasifikasi. Dalam kasus ini, kami menggunakan beberapa metrik untuk mengevaluasi model secara komprehensif:
 
-- **Accuracy**: Akurasi adalah proporsi jumlah prediksi yang benar (positif dan negatif) dibandingkan dengan total prediksi.
-  Formula:  
-  ![Accuracy](https://github.com/user-attachments/assets/4f0bdd4a-12db-4cde-862c-65d5cccf8ea9)
+  - **Accuracy**: Akurasi adalah proporsi jumlah prediksi yang benar (positif dan negatif) dibandingkan dengan total prediksi.
+    Formula:  
+    ![Accuracy](https://github.com/user-attachments/assets/4f0bdd4a-12db-4cde-862c-65d5cccf8ea9)
 
-  Dalam kasus ini, akurasi model KNN mencapai 99.45%, yang menunjukkan bahwa model ini sangat baik dalam memberikan prediksi yang benar untuk mayoritas data.
+    Dalam kasus ini, akurasi model KNN mencapai 99.45%, yang menunjukkan bahwa model ini sangat baik dalam memberikan prediksi yang benar untuk mayoritas data.
 
-- **Precision**: Presisi mengukur seberapa akurat prediksi positif dari model. Artinya, dari semua yang diprediksi sebagai positif, berapa banyak yang benar-benar positif. Cocok ketika false positive lebih berdampak besar, misalnya pada diagnosa penyakit.
-  Formula:  
-  ![Precision](https://github.com/user-attachments/assets/4d1e0bf6-cf26-4286-a4cb-b1bf476ba0e5)
+  - **Precision**: Presisi mengukur seberapa akurat prediksi positif dari model. Artinya, dari semua yang diprediksi sebagai positif, berapa banyak yang benar-benar positif. Cocok ketika false positive lebih berdampak besar, misalnya pada diagnosa penyakit.
+    Formula:  
+    ![Precision](https://github.com/user-attachments/assets/4d1e0bf6-cf26-4286-a4cb-b1bf476ba0e5)
 
-  Dalam konteks prediksi diabetes, presisi penting untuk memastikan bahwa pasien yang diprediksi mengidap diabetes benar-benar mengidap penyakit tersebut. Model KNN menunjukkan presisi 98%, yang berarti hampir semua prediksi positif yang dihasilkan oleh model benar adanya.
+    Dalam konteks prediksi diabetes, presisi penting untuk memastikan bahwa pasien yang diprediksi mengidap diabetes benar-benar mengidap penyakit tersebut. Model KNN menunjukkan presisi 98%, yang berarti hampir semua prediksi positif yang dihasilkan oleh model benar adanya.
 
-  Hal ini sangat penting dalam konteks medis, di mana kegagalan untuk mendeteksi pasien yang benar-benar mengidap diabetes (false negative) bisa berbahaya. Model KNN memberikan recall 99.47%, yang menunjukkan bahwa hampir semua pasien yang mengidap diabetes berhasil terdeteksi oleh model, tanpa ada yang terlewat (false negative = 0).
+    Hal ini sangat penting dalam konteks medis, di mana kegagalan untuk mendeteksi pasien yang benar-benar mengidap diabetes (false negative) bisa berbahaya. Model KNN memberikan recall 99.47%, yang menunjukkan bahwa hampir semua pasien yang mengidap diabetes berhasil terdeteksi oleh model, tanpa ada yang terlewat (false negative = 0).
 
-- **Recall**: Recall menunjukkan seberapa banyak dari kasus positif yang berhasil dideteksi dengan benar oleh model. Cocok ketika false negative berbahaya, seperti gagal mendeteksi pasien sakit.
-  Formula:  
-  ![Recall](https://github.com/user-attachments/assets/8bfb5177-b2b0-41da-8e0d-c42c773dfa04)
+  - **Recall**: Recall menunjukkan seberapa banyak dari kasus positif yang berhasil dideteksi dengan benar oleh model. Cocok ketika false negative berbahaya, seperti gagal mendeteksi pasien sakit.
+    Formula:  
+    ![Recall](https://github.com/user-attachments/assets/8bfb5177-b2b0-41da-8e0d-c42c773dfa04)
 
-  Model KNN mendapatkan F1-score 99.21%, yang menunjukkan bahwa model ini tidak hanya akurat, tetapi juga sensitif terhadap kasus positif yang harus terdeteksi.
+    Model KNN mendapatkan F1-score 99.21%, yang menunjukkan bahwa model ini tidak hanya akurat, tetapi juga sensitif terhadap kasus positif yang harus terdeteksi.
 
-- **F1-Score**: F1-Score adalah rata-rata harmonik dari Precision dan Recall. Digunakan saat membutuhkan keseimbangan antara presisi dan recall
-  Formula:  
-  ![F1-Score](https://github.com/user-attachments/assets/7a8a4a0e-64de-464e-a8ea-9981bb315b58)
+  - **F1-Score**: F1-Score adalah rata-rata harmonik dari Precision dan Recall. Digunakan saat membutuhkan keseimbangan antara presisi dan recall
+    Formula:  
+    ![F1-Score](https://github.com/user-attachments/assets/7a8a4a0e-64de-464e-a8ea-9981bb315b58)
 
-  Keterangan:
-    - TP = True Positive (prediksi positif yang benar)
-    = TN = True Negative (prediksi negatif yang benar)
-    - FP = False Positive (prediksi positif yang salah)
-    - FN = False Negative (prediksi negatif yang salah)
+    Keterangan:
+      - TP = True Positive (prediksi positif yang benar)
+      = TN = True Negative (prediksi negatif yang benar)
+      - FP = False Positive (prediksi positif yang salah)
+      - FN = False Negative (prediksi negatif yang salah)
 
-### Kenapa Menggunakan Metrik Evaluasi ?
-1. Accuracy saja tidak cukup.<br>
-   Karena ini adalah kasus medis, konsekuensi dari kesalahan prediksi sangat penting:
-    - False Positive (prediksi mengidap, padahal tidak) bisa menyebabkan kecemasan dan pengobatan yang tidak perlu.
-    - False Negative (prediksi tidak mengidap, padahal mengidap) lebih berbahaya karena pasien tidak ditangani padahal perlu.
-   Perlu diperhatikan juga:
-    - Recall → Penting untuk memastikan pasien yang benar-benar sakit tidak terlewat.
-    - Precision → Penting agar tidak terlalu banyak pasien yang sehat dikira sakit.
-    - F1-Score → Dipakai untuk menyeimbangkan keduanya.
+  ### Kenapa Menggunakan Metrik Evaluasi ?
+    1. Accuracy saja tidak cukup.<br>
+      Karena ini adalah kasus medis, konsekuensi dari kesalahan prediksi sangat penting:
+        - False Positive (prediksi mengidap, padahal tidak) bisa menyebabkan kecemasan dan pengobatan yang tidak perlu.
+        - False Negative (prediksi tidak mengidap, padahal mengidap) lebih berbahaya karena pasien tidak ditangani padahal perlu.
+      Perlu diperhatikan juga:
+        - Recall → Penting untuk memastikan pasien yang benar-benar sakit tidak terlewat.
+        - Precision → Penting agar tidak terlalu banyak pasien yang sehat dikira sakit.
+        - F1-Score → Dipakai untuk menyeimbangkan keduanya.
 
-2. Model terbaik bukan hanya yang punya akurasi tinggi.<br>
-   Evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
+    2. Model terbaik bukan hanya yang punya akurasi tinggi.<br>
+      Evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
 
-3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.<br>
-   Metrik tidak langsung menjawab hubungan antar fitur, tetapi membantu menilai dampak jika suatu fitur diubah, dihapus, atau diprioritaskan.
+    3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.<br>
+      Metrik tidak langsung menjawab hubungan antar fitur, tetapi membantu menilai dampak jika suatu fitur diubah, dihapus, atau diprioritaskan.
 
-   
-**Hasil Evaluasi Model**
-Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
+    
+  **Hasil Evaluasi Model**
+  Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 
-| Model               | Accuracy | Precision | Recall | F1 Score |
-|---------------------|----------|-----------|--------|----------|
-| KNN                 | 0.99     | 0.98      | 0.99   | 0.99     |
-| Random Forest       | 0.98     | 0.98      | 0.97   | 0.98     |
-| Logistic Regression | 0.76     | 0.64      | 0.72   | 0.68     |
+  | Model               | Accuracy | Precision | Recall | F1 Score |
+  |---------------------|----------|-----------|--------|----------|
+  | KNN                 | 0.99     | 0.98      | 0.99   | 0.99     |
+  | Random Forest       | 0.98     | 0.98      | 0.97   | 0.98     |
+  | Logistic Regression | 0.76     | 0.64      | 0.72   | 0.68     |
 
-Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE (X_train_resampled) dan data training yang telah diskalakan.
+  Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE (X_train_resampled) dan data training yang telah diskalakan.
 
-**Interpretasi dan Insight**
-Berdasarkan hasil evaluasi, 
-- KNN menjadi model yang direkomendasikan karena memiliki akurasi dan recall yang sangat tinggi (99.45% dan 99.47%), yang menunjukkan bahwa model ini mampu mendeteksi hampir semua kasus positif secara akurat, dengan false negative yang sangat rendah (0). Hal ini sangat penting dalam konteks medis, di mana tidak mendeteksi pasien yang benar-benar mengidap diabetes dapat menyebabkan konsekuensi serius.
-- Random Forest juga memberikan hasil yang baik dengan akurasi 98%, namun masih sedikit kalah dalam hal recall dan F1-score dibandingkan KNN, yang menunjukkan bahwa meskipun model ini cukup stabil, ada sedikit trade-off dalam performa yang lebih rendah pada deteksi kasus positif.
-- Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
+  **Interpretasi dan Insight**
+    Berdasarkan hasil evaluasi, 
+    - KNN menjadi model yang direkomendasikan karena memiliki akurasi dan recall yang sangat tinggi (99.45% dan 99.47%), yang menunjukkan bahwa model ini mampu mendeteksi hampir semua kasus positif secara akurat, dengan false negative yang sangat rendah (0). Hal ini sangat penting dalam konteks medis, di mana tidak mendeteksi pasien yang benar-benar mengidap diabetes dapat menyebabkan konsekuensi serius.
+    - Random Forest juga memberikan hasil yang baik dengan akurasi 98%, namun masih sedikit kalah dalam hal recall dan F1-score dibandingkan KNN, yang menunjukkan bahwa meskipun model ini cukup stabil, ada sedikit trade-off dalam performa yang lebih rendah pada deteksi kasus positif.
+    - Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
 
-2. Hubungan dengan Business Understanding
-Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
+2. Hubungan dengan Business Understanding<br>
+    Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
 
-Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab problem statement yang telah ditetapkan, yaitu memprediksi apakah seseorang berisiko diabetes, memilih algoritma yang paling efektif, dan mengidentifikasi fitur-fitur medis yang paling berpengaruh dalam prediksi tersebut.
+    Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab problem statement yang telah ditetapkan, yaitu memprediksi apakah seseorang berisiko diabetes, memilih algoritma yang paling efektif, dan mengidentifikasi fitur-fitur medis yang paling berpengaruh dalam prediksi tersebut.
 
 **Menjawab Problem Statement**
-- Bagaimana cara memprediksi apakah seseorang mengidap diabetes berdasarkan data yang tersedia?<br>
-  Model yang dibangun menggunakan tiga algoritma klasifikasi utama—KNN, Random Forest, dan Logistic Regression—berhasil memberikan prediksi yang sangat akurat tentang risiko diabetes. Model KNN, dengan akurasi 99.45%, mampu mendeteksi hampir seluruh kasus positif (Recall 99.47%), yang berarti model ini sangat baik dalam mendeteksi pasien yang benar-benar mengidap diabetes.
+  - Bagaimana cara memprediksi apakah seseorang mengidap diabetes berdasarkan data yang tersedia?<br>
+    Model yang dibangun menggunakan tiga algoritma klasifikasi utama—KNN, Random Forest, dan Logistic Regression—berhasil memberikan prediksi yang sangat akurat tentang risiko diabetes. Model KNN, dengan akurasi 99.45%, mampu mendeteksi hampir seluruh kasus positif (Recall 99.47%), yang berarti model ini sangat baik dalam mendeteksi pasien yang benar-benar mengidap diabetes.
 
-- Algoritma Machine Learning apa yang paling efektif dalam prediksi diabetes?<br>
-  Berdasarkan evaluasi metrik performa, KNN terbukti menjadi algoritma yang paling efektif dalam memprediksi diabetes. KNN memberikan hasil terbaik pada semua metrik evaluasi, terutama dalam hal recall, yang penting untuk mendeteksi semua pasien yang benar-benar sakit.
+  - Algoritma Machine Learning apa yang paling efektif dalam prediksi diabetes?<br>
+    Berdasarkan evaluasi metrik performa, KNN terbukti menjadi algoritma yang paling efektif dalam memprediksi diabetes. KNN memberikan hasil terbaik pada semua metrik evaluasi, terutama dalam hal recall, yang penting untuk mendeteksi semua pasien yang benar-benar sakit.
 
-- Apa saja fitur kesehatan yang paling memengaruhi klasifikasi risiko diabetes?
-  Fitur-fitur seperti Glucose, BMI, dan Age menunjukkan korelasi yang sangat kuat dengan Outcome (status diabetes). Fitur-fitur ini memainkan peran kunci dalam membentuk prediksi model, yang dapat memberikan wawasan penting untuk pengambilan keputusan medis. Model KNN yang menunjukkan kinerja terbaik, didorong oleh fitur-fitur ini yang berpengaruh besar dalam mengklasifikasikan seseorang berisiko diabetes atau tidak.
+  - Apa saja fitur kesehatan yang paling memengaruhi klasifikasi risiko diabetes?
+    Fitur-fitur seperti Glucose, BMI, dan Age menunjukkan korelasi yang sangat kuat dengan Outcome (status diabetes). Fitur-fitur ini memainkan peran kunci dalam membentuk prediksi model, yang dapat memberikan wawasan penting untuk pengambilan keputusan medis. Model KNN yang menunjukkan kinerja terbaik, didorong oleh fitur-fitur ini yang berpengaruh besar dalam mengklasifikasikan seseorang berisiko diabetes atau tidak.
 
-3. Mencapai Goals yang Diharapkan
-- Goal 1: Mengembangkan model klasifikasi dengan akurasi tinggi untuk memprediksi risiko diabetes.<br>
-  KNN berhasil mencapai akurasi 99.45%, yang sangat tinggi, dan memenuhi tujuan utama untuk membangun model yang dapat diandalkan dalam memprediksi risiko diabetes. Model ini sangat cocok untuk diterapkan dalam konteks medis karena kemampuannya dalam mendeteksi pasien yang benar-benar sakit.
+3. Mencapai Goals yang Diharapkan<br>
+    - Goal 1: Mengembangkan model klasifikasi dengan akurasi tinggi untuk memprediksi risiko diabetes.<br>
+      KNN berhasil mencapai akurasi 99.45%, yang sangat tinggi, dan memenuhi tujuan utama untuk membangun model yang dapat diandalkan dalam memprediksi risiko diabetes. Model ini sangat cocok untuk diterapkan dalam konteks medis karena kemampuannya dalam mendeteksi pasien yang benar-benar sakit.
 
-- Goal 2: Membandingkan efektivitas tiga algoritma klasifikasi (Logistic Regression, KNN, Random Forest).<br>
-  Evaluasi ini berhasil membandingkan ketiga algoritma secara objektif, dengan KNN menjadi yang terbaik berdasarkan akurasi, recall, precision, dan F1-score. Hasil ini memberikan bukti bahwa KNN adalah algoritma yang lebih efektif dan stabil dibandingkan dengan model lainnya.
+    - Goal 2: Membandingkan efektivitas tiga algoritma klasifikasi (Logistic Regression, KNN, Random Forest).<br>
+      Evaluasi ini berhasil membandingkan ketiga algoritma secara objektif, dengan KNN menjadi yang terbaik berdasarkan akurasi, recall, precision, dan F1-score. Hasil ini memberikan bukti bahwa KNN adalah algoritma yang lebih efektif dan stabil dibandingkan dengan model lainnya.
 
-- Goal 3: Mengidentifikasi fitur-fitur kunci yang memengaruhi hasil prediksi.<br>
-  Proses analisis korelasi berhasil mengidentifikasi fitur-fitur utama yang paling mempengaruhi prediksi risiko diabetes. Fitur-fitur seperti Glucose, BMI, dan Age memainkan peran penting dalam membentuk prediksi, memberikan wawasan yang sangat berguna bagi tenaga medis dalam pengambilan keputusan. Heatmap  dan Aplikasi yang dibangun memungkinkan visualisasi data dan hubungan antar fitur ini untuk memberikan pemahaman yang lebih baik dalam konteks klinis.
+    - Goal 3: Mengidentifikasi fitur-fitur kunci yang memengaruhi hasil prediksi.<br>
+      Proses analisis korelasi berhasil mengidentifikasi fitur-fitur utama yang paling mempengaruhi prediksi risiko diabetes. Fitur-fitur seperti Glucose, BMI, dan Age memainkan peran penting dalam membentuk prediksi, memberikan wawasan yang sangat berguna bagi tenaga medis dalam pengambilan keputusan. Heatmap  dan Aplikasi yang dibangun memungkinkan visualisasi data dan hubungan antar fitur ini untuk memberikan pemahaman yang lebih baik dalam konteks klinis.
 
-4. Dampak Solusi Statement
-Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
+4. Dampak Solusi Statement<br>
+    Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
 
-- Menggunakan Tiga Algoritma Klasifikasi Utama<br>
-Pendekatan ini bertujuan untuk membandingkan dan memilih model yang paling efektif dalam memprediksi risiko diabetes. Tiga algoritma yang digunakan adalah:
+    - Menggunakan Tiga Algoritma Klasifikasi Utama<br>
+    Pendekatan ini bertujuan untuk membandingkan dan memilih model yang paling efektif dalam memprediksi risiko diabetes. Tiga algoritma yang digunakan adalah:
 
-  1. K-Nearest Neighbors (KNN) unggul dalam menangkap pola lokal antar data, memberikan hasil yang sangat baik dalam mengidentifikasi individu yang berisiko diabetes.
+      1. K-Nearest Neighbors (KNN) unggul dalam menangkap pola lokal antar data, memberikan hasil yang sangat baik dalam mengidentifikasi individu yang berisiko diabetes.
 
-  2. Random Forest menggabungkan banyak pohon keputusan untuk menangani kompleksitas data yang tidak linear, sehingga memberikan prediksi yang lebih stabil dan tepat dalam konteks risiko diabetes.
+      2. Random Forest menggabungkan banyak pohon keputusan untuk menangani kompleksitas data yang tidak linear, sehingga memberikan prediksi yang lebih stabil dan tepat dalam konteks risiko diabetes.
 
-  3. Logistic Regression memberikan dasar yang mudah diinterpretasi, yang membantu tenaga medis memahami bagaimana faktor-faktor kesehatan memengaruhi prediksi diabetes.
+      3. Logistic Regression memberikan dasar yang mudah diinterpretasi, yang membantu tenaga medis memahami bagaimana faktor-faktor kesehatan memengaruhi prediksi diabetes.
 
-  Dampak penggunaan ketiga algoritma ini adalah kemampuan untuk memilih model yang paling akurat dan dapat diandalkan, yang sangat penting untuk deteksi dini diabetes dalam praktek medis.
+      Dampak penggunaan ketiga algoritma ini adalah kemampuan untuk memilih model yang paling akurat dan dapat diandalkan, yang sangat penting untuk deteksi dini diabetes dalam praktek medis.
 
-- Menangani Masalah Ketidakseimbangan Data (Imbalanced Classes) Menggunakan SMOTE untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.<br>
-Dataset yang digunakan memiliki distribusi kelas yang tidak seimbang, di mana penderita diabetes jauh lebih sedikit dibandingkan dengan yang tidak. Ketidakseimbangan ini dapat menyebabkan model menjadi bias, lebih memprediksi kelas mayoritas dan kurang memperhatikan kelas minoritas (penderita diabetes). Dengan menggunakan teknik SMOTE (Synthetic Minority Over-sampling Technique), distribusi kelas dapat diseimbangkan, memberikan lebih banyak contoh pada kelas minoritas sehingga model dapat belajar dengan lebih baik untuk mendeteksi risiko diabetes.
+    - Menangani Masalah Ketidakseimbangan Data (Imbalanced Classes) Menggunakan SMOTE untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.<br>
+    Dataset yang digunakan memiliki distribusi kelas yang tidak seimbang, di mana penderita diabetes jauh lebih sedikit dibandingkan dengan yang tidak. Ketidakseimbangan ini dapat menyebabkan model menjadi bias, lebih memprediksi kelas mayoritas dan kurang memperhatikan kelas minoritas (penderita diabetes). Dengan menggunakan teknik SMOTE (Synthetic Minority Over-sampling Technique), distribusi kelas dapat diseimbangkan, memberikan lebih banyak contoh pada kelas minoritas sehingga model dapat belajar dengan lebih baik untuk mendeteksi risiko diabetes.
 
-  Dampak dari penggunaan SMOTE adalah peningkatan kemampuan model dalam mendeteksi diabetes, mengurangi kemungkinan bias yang dapat menyebabkan kesalahan dalam diagnosa dan meminimalkan false negatives, di mana penderita diabetes tidak terdeteksi oleh model.
+      Dampak dari penggunaan SMOTE adalah peningkatan kemampuan model dalam mendeteksi diabetes, mengurangi kemungkinan bias yang dapat menyebabkan kesalahan dalam diagnosa dan meminimalkan false negatives, di mana penderita diabetes tidak terdeteksi oleh model.
 
-- Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting<br>
-Hyperparameter tuning memastikan bahwa model yang digunakan memiliki performa yang optimal, baik dalam hal akurasi maupun keseimbangan prediksi antar kelas. Dengan melakukan penyetelan parameter yang tepat, model dapat dihindari dari masalah overfitting atau underfitting, yang dapat mengurangi akurasi prediksi pada data baru.
+    - Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting<br>
+    Hyperparameter tuning memastikan bahwa model yang digunakan memiliki performa yang optimal, baik dalam hal akurasi maupun keseimbangan prediksi antar kelas. Dengan melakukan penyetelan parameter yang tepat, model dapat dihindari dari masalah overfitting atau underfitting, yang dapat mengurangi akurasi prediksi pada data baru.
 
-  Dampak dari tuning ini adalah peningkatan stabilitas dan keakuratan model, yang menjadikannya lebih andal saat digunakan di dunia nyata, khususnya dalam deteksi dini diabetes, di mana setiap keputusan medis harus didasarkan pada hasil yang sangat akurat.
+      Dampak dari tuning ini adalah peningkatan stabilitas dan keakuratan model, yang menjadikannya lebih andal saat digunakan di dunia nyata, khususnya dalam deteksi dini diabetes, di mana setiap keputusan medis harus didasarkan pada hasil yang sangat akurat.
 
-- Menerapkan Evaluasi Model Menggunakan Metrik Klasifikasi yang Relevan (Accuracy, Precision, Recall, dan F1-score)<br>
-Model dievaluasi dengan metrik-metrik seperti accuracy, precision, recall, dan F1-score. Evaluasi ini memberikan gambaran yang lebih jelas tentang kinerja model, terutama dalam konteks medis di mana kesalahan prediksi bisa berbahaya. Dengan memperhatikan metrik seperti recall, kami memastikan bahwa model dapat mendeteksi sebanyak mungkin pasien yang benar-benar sakit, yang sangat penting untuk mencegah false negative (gagal mendeteksi diabetes).
+    - Menerapkan Evaluasi Model Menggunakan Metrik Klasifikasi yang Relevan (Accuracy, Precision, Recall, dan F1-score)<br>
+    Model dievaluasi dengan metrik-metrik seperti accuracy, precision, recall, dan F1-score. Evaluasi ini memberikan gambaran yang lebih jelas tentang kinerja model, terutama dalam konteks medis di mana kesalahan prediksi bisa berbahaya. Dengan memperhatikan metrik seperti recall, kami memastikan bahwa model dapat mendeteksi sebanyak mungkin pasien yang benar-benar sakit, yang sangat penting untuk mencegah false negative (gagal mendeteksi diabetes).
 
-  Dampak dari evaluasi ini dapat dilihat dari evaluasi metrik masing - masing model menunjukkan adanya peningkatan keandalan model dalam membuat prediksi yang tepat dengan pencegahan overfitting, hal ini dapat membantu dalam mengambil keputusan yang lebih tepat dan aman.
+      Dampak dari evaluasi ini dapat dilihat dari evaluasi metrik masing - masing model menunjukkan adanya peningkatan keandalan model dalam membuat prediksi yang tepat dengan pencegahan overfitting, hal ini dapat membantu dalam mengambil keputusan yang lebih tepat dan aman.
 
-- Membandingkan Hasil dan Memilih Model Terbaik Berdasarkan Performa Evaluasi, Stabilitas, dan Interpretabilitas<br>
-Kriteria utama dalam pemilihan model adalah stabilitas, akurasi prediksi, dan kemampuan untuk diinterpretasi dalam konteks medis. Ini memastikan bahwa model yang dipilih dapat diandalkan untuk penggunaan praktis dan memudahkan dalam memahami hasil prediksi serta mengambil keputusan berdasarkan data.
+    - Membandingkan Hasil dan Memilih Model Terbaik Berdasarkan Performa Evaluasi, Stabilitas, dan Interpretabilitas<br>
+    Kriteria utama dalam pemilihan model adalah stabilitas, akurasi prediksi, dan kemampuan untuk diinterpretasi dalam konteks medis. Ini memastikan bahwa model yang dipilih dapat diandalkan untuk penggunaan praktis dan memudahkan dalam memahami hasil prediksi serta mengambil keputusan berdasarkan data.
 
-  Dampak dari memilih model terbaik adalah memberikan solusi yang optimal yang dapat langsung digunakan untuk skrining risiko diabetes, dengan hasil yang mudah dipahami dan diterjemahkan ke dalam langkah-langkah medis yang tepat.
+      Dampak dari memilih model terbaik adalah memberikan solusi yang optimal yang dapat langsung digunakan untuk skrining risiko diabetes, dengan hasil yang mudah dipahami dan diterjemahkan ke dalam langkah-langkah medis yang tepat.
 
-- Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.<br>
-Aplikasi berbasis Streamlit yang dikembangkan dalam proyek ini memberikan antarmuka pengguna yang intuitif dan ramah pengguna, sehingga memudahkan tenaga medis atau siapa pun untuk melakukan prediksi risiko diabetes hanya dengan memasukkan data kesehatan pasien. Aplikasi ini memungkinkan pengguna untuk memilih model prediksi yang diinginkan (KNN, Random Forest, atau Logistic Regression) dan memberikan hasil yang cepat serta mudah dimengerti.
+    - Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.<br>
+    Aplikasi berbasis Streamlit yang dikembangkan dalam proyek ini memberikan antarmuka pengguna yang intuitif dan ramah pengguna, sehingga memudahkan tenaga medis atau siapa pun untuk melakukan prediksi risiko diabetes hanya dengan memasukkan data kesehatan pasien. Aplikasi ini memungkinkan pengguna untuk memilih model prediksi yang diinginkan (KNN, Random Forest, atau Logistic Regression) dan memberikan hasil yang cepat serta mudah dimengerti.
 
-  Dampak dari aplikasi ini adalah efisiensi waktu dan penghematan biaya, terutama jika sumber daya medis terbatas. Aplikasi ini memberikan akses mudah dan cepat untuk melakukan skrining, yang dapat mempercepat proses diagnosa dan mengurangi waktu tunggu untuk deteksi risiko diabetes.
+      Dampak dari aplikasi ini adalah efisiensi waktu dan penghematan biaya, terutama jika sumber daya medis terbatas. Aplikasi ini memberikan akses mudah dan cepat untuk melakukan skrining, yang dapat mempercepat proses diagnosa dan mengurangi waktu tunggu untuk deteksi risiko diabetes.
 
 ## Kesimpulan
 
