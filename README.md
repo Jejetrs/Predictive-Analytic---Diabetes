@@ -274,7 +274,7 @@ Secara konsep, KNN sangat mudah dipahami oleh praktisi maupun pihak non-teknis: 
 
 Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam memprediksi risiko diabetes pada data baru, serta untuk memastikan bahwa model yang dibangun memenuhi tujuan yang lebih luas sesuai dengan Business Understanding. Evaluasi ini melibatkan analisis hasil model berdasarkan metrik-metrik evaluasi yang relevan dalam konteks medis, di mana kesalahan prediksi dapat memiliki dampak signifikan.
 
-1. Metrik Evaluasi <br>
+### Metrik Evaluasi <br>
   Metrik evaluasi digunakan untuk mengukur dan menilai performa model dalam konteks klasifikasi. Dalam kasus ini, kami menggunakan beberapa metrik untuk mengevaluasi model secara komprehensif:
 
   - **Accuracy**: Akurasi adalah proporsi jumlah prediksi yang benar (positif dan negatif) dibandingkan dengan total prediksi.
@@ -307,7 +307,7 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
       - FP = False Positive (prediksi positif yang salah)
       - FN = False Negative (prediksi negatif yang salah)
 
-  ### Kenapa Menggunakan Metrik Evaluasi ?
+  #### Kenapa Menggunakan Metrik Evaluasi ?
   1. Accuracy saja tidak cukup.<br>
       Karena ini adalah kasus medis, konsekuensi dari kesalahan prediksi sangat penting:
         - False Positive (prediksi mengidap, padahal tidak) bisa menyebabkan kecemasan dan pengobatan yang tidak perlu.
@@ -341,7 +341,7 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
   - Random Forest juga memberikan hasil yang baik dengan akurasi 98%, namun masih sedikit kalah dalam hal recall dan F1-score dibandingkan KNN, yang menunjukkan bahwa meskipun model ini cukup stabil, ada sedikit trade-off dalam performa yang lebih rendah pada deteksi kasus positif.
   - Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
 
-2. Hubungan dengan Business Understanding<br>
+### Hubungan dengan Business Understanding<br>
     Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
 
     Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab problem statement yang telah ditetapkan, yaitu memprediksi apakah seseorang berisiko diabetes, memilih algoritma yang paling efektif, dan mengidentifikasi fitur-fitur medis yang paling berpengaruh dalam prediksi tersebut.
@@ -356,7 +356,7 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
   - Apa saja fitur kesehatan yang paling memengaruhi klasifikasi risiko diabetes?
     Fitur-fitur seperti Glucose, BMI, dan Age menunjukkan korelasi yang sangat kuat dengan Outcome (status diabetes). Fitur-fitur ini memainkan peran kunci dalam membentuk prediksi model, yang dapat memberikan wawasan penting untuk pengambilan keputusan medis. Model KNN yang menunjukkan kinerja terbaik, didorong oleh fitur-fitur ini yang berpengaruh besar dalam mengklasifikasikan seseorang berisiko diabetes atau tidak.
 
-3. Mencapai Goals yang Diharapkan<br>
+### Mencapai Goals yang Diharapkan<br>
     - Goal 1: Mengembangkan model klasifikasi dengan akurasi tinggi untuk memprediksi risiko diabetes.<br>
       KNN berhasil mencapai akurasi 99.45%, yang sangat tinggi, dan memenuhi tujuan utama untuk membangun model yang dapat diandalkan dalam memprediksi risiko diabetes. Model ini sangat cocok untuk diterapkan dalam konteks medis karena kemampuannya dalam mendeteksi pasien yang benar-benar sakit.
 
@@ -366,7 +366,7 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
     - Goal 3: Mengidentifikasi fitur-fitur kunci yang memengaruhi hasil prediksi.<br>
       Proses analisis korelasi berhasil mengidentifikasi fitur-fitur utama yang paling mempengaruhi prediksi risiko diabetes. Fitur-fitur seperti Glucose, BMI, dan Age memainkan peran penting dalam membentuk prediksi, memberikan wawasan yang sangat berguna bagi tenaga medis dalam pengambilan keputusan. Heatmap  dan Aplikasi yang dibangun memungkinkan visualisasi data dan hubungan antar fitur ini untuk memberikan pemahaman yang lebih baik dalam konteks klinis.
 
-4. Dampak Solusi Statement<br>
+#### Dampak Solusi Statement<br>
     Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
 
     - Menggunakan Tiga Algoritma Klasifikasi Utama<br>
