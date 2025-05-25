@@ -119,7 +119,6 @@ Model yang digunakan dan parameternya :
 | Random Forest (tuning)             | `n_estimators=[100, 200]`, `max_depth=[None, 10, 20]`, `min_samples_split=[2, 5]`, `min_samples_leaf=[1, 2]`, `max_features='sqrt'`, `random_state=42`       |
 | Logistic Regression (awal)         | `max_iter=1000`                                                                                                                                              |
 | Logistic Regression (tuning)       | `penalty='elasticnet'`, `solver='saga'`, `l1_ratio=[0.1, 0.5, 0.9]`, `max_iter=1000`, `random_state=42`                                                     |
-                                                                      |
 
 
 Model-model ini dipilih karena masing-masing mewakili pendekatan yang berbeda dalam klasifikasi, mulai dari yang sederhana hingga yang lebih kompleks, sehingga bisa dibandingkan performanya secara adil terhadap dataset diabetes ini.
