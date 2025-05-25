@@ -5,14 +5,13 @@ import plotly.express as px
 import plotly.graph_objects as go
 import joblib
 
-# WAJIB! Ini harus di baris pertama sebelum st.* lainnya
 st.set_page_config(page_title="Diabetes Prediction", layout="wide")
 
 # Load dataset dan model machine learning
 df = pd.read_csv("app/cleaned_dataset/Cleaned_Healthcare_Diabetes.csv")
-knn_model = joblib.load('app/model/knn_model.pkl')
-rf_model = joblib.load('app/model/rf_model.pkl')
-logreg_model = joblib.load('app/model/lr_model.pkl') 
+knn_model = joblib.load('app/model/best_knn_model.pkl')
+rf_model = joblib.load('app/model/best_rf_model.pkl')
+logreg_model = joblib.load('app/model/best_lr_model.pkl') 
 scaler = joblib.load('app/model/scaler.pkl')
 
 # --- CUSTOM CSS ---
