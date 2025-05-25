@@ -372,25 +372,38 @@ Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi 
 - Menggunakan Tiga Algoritma Klasifikasi Utama<br>
 Pendekatan ini bertujuan untuk membandingkan dan memilih model yang paling efektif dalam memprediksi risiko diabetes. Tiga algoritma yang digunakan adalah:
 
-  1. Logistic Regression: Sebagai model baseline yang sederhana dan mudah diinterpretasi, memberikan dasar untuk perbandingan dengan model yang lebih kompleks.
-  2. K-Nearest Neighbors (KNN): Digunakan untuk menangkap pola lokal antar data, dengan fokus pada tetangga terdekat untuk memprediksi kelas.
-  3. Random Forest Classifier: Model ensemble yang mampu menangani non-linearitas dan meningkatkan generalisasi dengan menggabungkan banyak pohon keputusan, sehingga memperkuat prediksi.
+  1. K-Nearest Neighbors (KNN) unggul dalam menangkap pola lokal antar data, memberikan hasil yang sangat baik dalam mengidentifikasi individu yang berisiko diabetes.
+
+  2. Random Forest menggabungkan banyak pohon keputusan untuk menangani kompleksitas data yang tidak linear, sehingga memberikan prediksi yang lebih stabil dan tepat dalam konteks risiko diabetes.
+
+  3. Logistic Regression memberikan dasar yang mudah diinterpretasi, yang membantu tenaga medis memahami bagaimana faktor-faktor kesehatan memengaruhi prediksi diabetes.
+
+Dampak penggunaan ketiga algoritma ini adalah kemampuan untuk memilih model yang paling akurat dan dapat diandalkan, yang sangat penting untuk deteksi dini diabetes dalam praktek medis.
 
 - Menangani Masalah Ketidakseimbangan Data (Imbalanced Classes) Menggunakan SMOTE untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.<br>
-Dataset ini memiliki distribusi kelas yang tidak seimbang antara penderita dan non-penderita diabetes. Untuk mengatasi ketidakseimbangan ini, digunakan teknik SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan distribusi kelas, memastikan model dapat memprediksi dengan lebih baik tanpa bias terhadap kelas mayoritas.
+Dataset yang digunakan memiliki distribusi kelas yang tidak seimbang, di mana penderita diabetes jauh lebih sedikit dibandingkan dengan yang tidak. Ketidakseimbangan ini dapat menyebabkan model menjadi bias, lebih memprediksi kelas mayoritas dan kurang memperhatikan kelas minoritas (penderita diabetes). Dengan menggunakan teknik SMOTE (Synthetic Minority Over-sampling Technique), distribusi kelas dapat diseimbangkan, memberikan lebih banyak contoh pada kelas minoritas sehingga model dapat belajar dengan lebih baik untuk mendeteksi risiko diabetes.
+
+Dampak dari penggunaan SMOTE adalah peningkatan kemampuan model dalam mendeteksi diabetes, mengurangi kemungkinan bias yang dapat menyebabkan kesalahan dalam diagnosa dan meminimalkan false negatives, di mana penderita diabetes tidak terdeteksi oleh model.
 
 - Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting<br>
-Beberapa model, terutama KNN dan Random Forest, memiliki potensi besar namun performanya bisa ditingkatkan dengan penyetelan hyperparameter yang tepat. Oleh karena itu, dilakukan hyperparameter tuning untuk meningkatkan akurasi dan keseimbangan prediksi antar kelas. Proses ini memastikan model dapat menghindari overfitting atau underfitting, dan menghasilkan prediksi yang lebih stabil dan akurat.
+Hyperparameter tuning memastikan bahwa model yang digunakan memiliki performa yang optimal, baik dalam hal akurasi maupun keseimbangan prediksi antar kelas. Dengan melakukan penyetelan parameter yang tepat, model dapat dihindari dari masalah overfitting atau underfitting, yang dapat mengurangi akurasi prediksi pada data baru.
+
+Dampak dari tuning ini adalah peningkatan stabilitas dan keakuratan model, yang menjadikannya lebih andal saat digunakan di dunia nyata, khususnya dalam deteksi dini diabetes, di mana setiap keputusan medis harus didasarkan pada hasil yang sangat akurat.
 
 - Menerapkan Evaluasi Model Menggunakan Metrik Klasifikasi yang Relevan (Accuracy, Precision, Recall, dan F1-score)<br>
-Untuk memastikan performa model yang adil dan dapat diandalkan, digunakan metrik evaluasi yang mencakup accuracy, precision, recall, dan F1-score. Metrik-metrik ini penting untuk mengevaluasi model dalam konteks medis, di mana kesalahan prediksi dapat memiliki konsekuensi serius. Evaluasi ini memberikan gambaran yang lebih lengkap tentang seberapa baik model dalam mendeteksi pasien yang benar-benar menderita diabetes tanpa menyebabkan kesalahan yang berbahaya (false positive dan false negative).
+Model dievaluasi dengan metrik-metrik seperti accuracy, precision, recall, dan F1-score. Evaluasi ini memberikan gambaran yang lebih jelas tentang kinerja model, terutama dalam konteks medis di mana kesalahan prediksi bisa berbahaya. Dengan memperhatikan metrik seperti recall, kami memastikan bahwa model dapat mendeteksi sebanyak mungkin pasien yang benar-benar sakit, yang sangat penting untuk mencegah false negative (gagal mendeteksi diabetes).
+
+Dampak dari evaluasi ini dapat dilihat dari evaluasi metrik masing - masing model menunjukkan adanya peningkatan keandalan model dalam membuat prediksi yang tepat dengan pencegahan overfitting, hal ini dapat membantu dalam mengambil keputusan yang lebih tepat dan aman.
 
 - Membandingkan Hasil dan Memilih Model Terbaik Berdasarkan Performa Evaluasi, Stabilitas, dan Interpretabilitas<br>
-Setelah model diuji dan dievaluasi menggunakan metrik-metrik tersebut, langkah berikutnya adalah membandingkan hasil dan memilih model terbaik berdasarkan performa evaluasi yang paling memuaskan. Kriteria utama dalam pemilihan model adalah stabilitas, akurasi prediksi, dan kemampuan untuk diinterpretasi dalam konteks medis. Model yang dipilih harus mampu diimplementasikan dalam dunia nyata dengan mudah, memberikan hasil yang akurat, dan dapat dipahami oleh tenaga medis.
+Kriteria utama dalam pemilihan model adalah stabilitas, akurasi prediksi, dan kemampuan untuk diinterpretasi dalam konteks medis. Ini memastikan bahwa model yang dipilih dapat diandalkan untuk penggunaan praktis dan memudahkan dalam memahami hasil prediksi serta mengambil keputusan berdasarkan data.
 
-- Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.
+Dampak dari memilih model terbaik adalah memberikan solusi yang optimal yang dapat langsung digunakan untuk skrining risiko diabetes, dengan hasil yang mudah dipahami dan diterjemahkan ke dalam langkah-langkah medis yang tepat.
 
-Proyek ini tidak hanya fokus pada pengembangan model prediktif yang akurat, tetapi juga pada implementasi praktis model tersebut dalam konteks medis sehari-hari. Oleh karena itu, salah satu aspek penting dari solusi yang dihasilkan adalah aplikasi berbasis Streamlit yang dirancang untuk memberikan antarmuka pengguna yang intuitif, ramah pengguna dan informatif. Antarmuka aplikasi ini dirancang agar ramah pengguna, dengan input data yang mudah, informasi dan visualisasi hasil yang jelas. Aplikasi ini memungkinkan prediksi menggunakan tiga model klasifikasi (KNN, Random Forest, dan Logistic Regression) yang telah dievaluasi.
+- Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.<br>
+Aplikasi berbasis Streamlit yang dikembangkan dalam proyek ini memberikan antarmuka pengguna yang intuitif dan ramah pengguna, sehingga memudahkan tenaga medis atau siapa pun untuk melakukan prediksi risiko diabetes hanya dengan memasukkan data kesehatan pasien. Aplikasi ini memungkinkan pengguna untuk memilih model prediksi yang diinginkan (KNN, Random Forest, atau Logistic Regression) dan memberikan hasil yang cepat serta mudah dimengerti.
+
+Dampak dari aplikasi ini adalah efisiensi waktu dan penghematan biaya, terutama jika sumber daya medis terbatas. Aplikasi ini memberikan akses mudah dan cepat untuk melakukan skrining, yang dapat mempercepat proses diagnosa dan mengurangi waktu tunggu untuk deteksi risiko diabetes.
 
 ## Kesimpulan
 
@@ -398,7 +411,7 @@ Berdasarkan hasil evaluasi ini, proyek ini berhasil membangun model prediktif ya
 
 Evaluasi ini juga mengonfirmasi bahwa tujuan utama dari proyek ini, yaitu untuk mengembangkan alat prediktif yang dapat diandalkan, telah tercapai, dengan model yang tidak hanya akurat tetapi juga dapat diinterpretasikan oleh para tenaga medis untuk keputusan klinis yang lebih baik.
 
-## Deployment
+## Testing / Deployment
 
 Link deploy : https://predictive-analytic-diabetes.streamlit.app/
 Aplikasi ini telah dikembangkan menggunakan Streamlit untuk memberikan antarmuka interaktif dalam memvisualisasikan data dan memprediksi risiko diabetes secara interaktif, user dapat melihat visualisasi data dan mencoba hasil prediksi dengan 3 skema model.
@@ -429,7 +442,7 @@ app/
 #####🛠️ Cara Menjalankan Aplikasi Secara Lokal
 
 1. Pastikan file app.py ada di root folder
-2. Aktifkan virtual environment (opsional tapi direkomendasikan)
+2. Aktifkan virtual environment (opsional tapi direkomendasikan) :  python -m venv myenv  ===> (aktifkan) .\myenv\Scripts\activate ===> (nonaktifkan) deactivate
 3. Install semua dependency dengan : pip install -r requirements.txt
 4. Jika perlu upgrade pip (opsional): python.exe -m pip install --upgrade pip 
 4. Jalankan aplikasi Streamlit di terminal code editor : streamlit run app.py
