@@ -308,7 +308,7 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
       - FN = False Negative (prediksi negatif yang salah)
 
   ### Kenapa Menggunakan Metrik Evaluasi ?
-    1. Accuracy saja tidak cukup.<br>
+  1. Accuracy saja tidak cukup.<br>
       Karena ini adalah kasus medis, konsekuensi dari kesalahan prediksi sangat penting:
         - False Positive (prediksi mengidap, padahal tidak) bisa menyebabkan kecemasan dan pengobatan yang tidak perlu.
         - False Negative (prediksi tidak mengidap, padahal mengidap) lebih berbahaya karena pasien tidak ditangani padahal perlu.
@@ -317,10 +317,10 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
         - Precision → Penting agar tidak terlalu banyak pasien yang sehat dikira sakit.
         - F1-Score → Dipakai untuk menyeimbangkan keduanya.
 
-    2. Model terbaik bukan hanya yang punya akurasi tinggi.<br>
+  2. Model terbaik bukan hanya yang punya akurasi tinggi.<br>
       Evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
 
-    3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.<br>
+  3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.<br>
       Metrik tidak langsung menjawab hubungan antar fitur, tetapi membantu menilai dampak jika suatu fitur diubah, dihapus, atau diprioritaskan.
 
     
@@ -336,10 +336,10 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
   Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE (X_train_resampled) dan data training yang telah diskalakan.
 
   **Interpretasi dan Insight**
-    Berdasarkan hasil evaluasi, 
-    - KNN menjadi model yang direkomendasikan karena memiliki akurasi dan recall yang sangat tinggi (99.45% dan 99.47%), yang menunjukkan bahwa model ini mampu mendeteksi hampir semua kasus positif secara akurat, dengan false negative yang sangat rendah (0). Hal ini sangat penting dalam konteks medis, di mana tidak mendeteksi pasien yang benar-benar mengidap diabetes dapat menyebabkan konsekuensi serius.
-    - Random Forest juga memberikan hasil yang baik dengan akurasi 98%, namun masih sedikit kalah dalam hal recall dan F1-score dibandingkan KNN, yang menunjukkan bahwa meskipun model ini cukup stabil, ada sedikit trade-off dalam performa yang lebih rendah pada deteksi kasus positif.
-    - Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
+  Berdasarkan hasil evaluasi, 
+  - KNN menjadi model yang direkomendasikan karena memiliki akurasi dan recall yang sangat tinggi (99.45% dan 99.47%), yang menunjukkan bahwa model ini mampu mendeteksi hampir semua kasus positif secara akurat, dengan false negative yang sangat rendah (0). Hal ini sangat penting dalam konteks medis, di mana tidak mendeteksi pasien yang benar-benar mengidap diabetes dapat menyebabkan konsekuensi serius.
+  - Random Forest juga memberikan hasil yang baik dengan akurasi 98%, namun masih sedikit kalah dalam hal recall dan F1-score dibandingkan KNN, yang menunjukkan bahwa meskipun model ini cukup stabil, ada sedikit trade-off dalam performa yang lebih rendah pada deteksi kasus positif.
+  - Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
 
 2. Hubungan dengan Business Understanding<br>
     Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
