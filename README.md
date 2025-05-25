@@ -353,7 +353,7 @@ Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab p
   - Algoritma Machine Learning apa yang paling efektif dalam prediksi diabetes?<br>
     Berdasarkan evaluasi metrik performa, KNN terbukti menjadi algoritma yang paling efektif dalam memprediksi diabetes. KNN memberikan hasil terbaik pada semua metrik evaluasi, terutama dalam hal recall, yang penting untuk mendeteksi semua pasien yang benar-benar sakit.
 
-  - Apa saja fitur kesehatan yang paling memengaruhi klasifikasi risiko diabetes?
+  - Apa saja fitur kesehatan yang paling memengaruhi klasifikasi risiko diabetes?<br>
     Fitur-fitur seperti Glucose, BMI, dan Age menunjukkan korelasi yang sangat kuat dengan Outcome (status diabetes). Fitur-fitur ini memainkan peran kunci dalam membentuk prediksi model, yang dapat memberikan wawasan penting untuk pengambilan keputusan medis. Model KNN yang menunjukkan kinerja terbaik, didorong oleh fitur-fitur ini yang berpengaruh besar dalam mengklasifikasikan seseorang berisiko diabetes atau tidak.
 
 ### Mencapai Goals yang Diharapkan<br>
@@ -400,7 +400,7 @@ Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi 
 
       Dampak dari memilih model terbaik adalah memberikan solusi yang optimal yang dapat langsung digunakan untuk skrining risiko diabetes, dengan hasil yang mudah dipahami dan diterjemahkan ke dalam langkah-langkah medis yang tepat.
 
-    - Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.<br>
+  - Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.<br>
     Aplikasi berbasis Streamlit yang dikembangkan dalam proyek ini memberikan antarmuka pengguna yang intuitif dan ramah pengguna, sehingga memudahkan tenaga medis atau siapa pun untuk melakukan prediksi risiko diabetes hanya dengan memasukkan data kesehatan pasien. Aplikasi ini memungkinkan pengguna untuk memilih model prediksi yang diinginkan (KNN, Random Forest, atau Logistic Regression) dan memberikan hasil yang cepat serta mudah dimengerti.
 
       Dampak dari aplikasi ini adalah efisiensi waktu dan penghematan biaya, terutama jika sumber daya medis terbatas. Aplikasi ini memberikan akses mudah dan cepat untuk melakukan skrining, yang dapat mempercepat proses diagnosa dan mengurangi waktu tunggu untuk deteksi risiko diabetes.
