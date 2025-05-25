@@ -357,19 +357,19 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
     Fitur-fitur seperti Glucose, BMI, dan Age menunjukkan korelasi yang sangat kuat dengan Outcome (status diabetes). Fitur-fitur ini memainkan peran kunci dalam membentuk prediksi model, yang dapat memberikan wawasan penting untuk pengambilan keputusan medis. Model KNN yang menunjukkan kinerja terbaik, didorong oleh fitur-fitur ini yang berpengaruh besar dalam mengklasifikasikan seseorang berisiko diabetes atau tidak.
 
 ### Mencapai Goals yang Diharapkan<br>
-    - Goal 1: Mengembangkan model klasifikasi dengan akurasi tinggi untuk memprediksi risiko diabetes.<br>
+  - Goal 1: Mengembangkan model klasifikasi dengan akurasi tinggi untuk memprediksi risiko diabetes.<br>
       KNN berhasil mencapai akurasi 99.45%, yang sangat tinggi, dan memenuhi tujuan utama untuk membangun model yang dapat diandalkan dalam memprediksi risiko diabetes. Model ini sangat cocok untuk diterapkan dalam konteks medis karena kemampuannya dalam mendeteksi pasien yang benar-benar sakit.
 
-    - Goal 2: Membandingkan efektivitas tiga algoritma klasifikasi (Logistic Regression, KNN, Random Forest).<br>
+  - Goal 2: Membandingkan efektivitas tiga algoritma klasifikasi (Logistic Regression, KNN, Random Forest).<br>
       Evaluasi ini berhasil membandingkan ketiga algoritma secara objektif, dengan KNN menjadi yang terbaik berdasarkan akurasi, recall, precision, dan F1-score. Hasil ini memberikan bukti bahwa KNN adalah algoritma yang lebih efektif dan stabil dibandingkan dengan model lainnya.
 
-    - Goal 3: Mengidentifikasi fitur-fitur kunci yang memengaruhi hasil prediksi.<br>
+  - Goal 3: Mengidentifikasi fitur-fitur kunci yang memengaruhi hasil prediksi.<br>
       Proses analisis korelasi berhasil mengidentifikasi fitur-fitur utama yang paling mempengaruhi prediksi risiko diabetes. Fitur-fitur seperti Glucose, BMI, dan Age memainkan peran penting dalam membentuk prediksi, memberikan wawasan yang sangat berguna bagi tenaga medis dalam pengambilan keputusan. Heatmap  dan Aplikasi yang dibangun memungkinkan visualisasi data dan hubungan antar fitur ini untuk memberikan pemahaman yang lebih baik dalam konteks klinis.
 
 #### Dampak Solusi Statement<br>
     Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
 
-    - Menggunakan Tiga Algoritma Klasifikasi Utama<br>
+  - Menggunakan Tiga Algoritma Klasifikasi Utama<br>
     Pendekatan ini bertujuan untuk membandingkan dan memilih model yang paling efektif dalam memprediksi risiko diabetes. Tiga algoritma yang digunakan adalah:
 
       1. K-Nearest Neighbors (KNN) unggul dalam menangkap pola lokal antar data, memberikan hasil yang sangat baik dalam mengidentifikasi individu yang berisiko diabetes.
@@ -380,22 +380,22 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
 
       Dampak penggunaan ketiga algoritma ini adalah kemampuan untuk memilih model yang paling akurat dan dapat diandalkan, yang sangat penting untuk deteksi dini diabetes dalam praktek medis.
 
-    - Menangani Masalah Ketidakseimbangan Data (Imbalanced Classes) Menggunakan SMOTE untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.<br>
+  - Menangani Masalah Ketidakseimbangan Data (Imbalanced Classes) Menggunakan SMOTE untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.<br>
     Dataset yang digunakan memiliki distribusi kelas yang tidak seimbang, di mana penderita diabetes jauh lebih sedikit dibandingkan dengan yang tidak. Ketidakseimbangan ini dapat menyebabkan model menjadi bias, lebih memprediksi kelas mayoritas dan kurang memperhatikan kelas minoritas (penderita diabetes). Dengan menggunakan teknik SMOTE (Synthetic Minority Over-sampling Technique), distribusi kelas dapat diseimbangkan, memberikan lebih banyak contoh pada kelas minoritas sehingga model dapat belajar dengan lebih baik untuk mendeteksi risiko diabetes.
 
       Dampak dari penggunaan SMOTE adalah peningkatan kemampuan model dalam mendeteksi diabetes, mengurangi kemungkinan bias yang dapat menyebabkan kesalahan dalam diagnosa dan meminimalkan false negatives, di mana penderita diabetes tidak terdeteksi oleh model.
 
-    - Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting<br>
+  - Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting<br>
     Hyperparameter tuning memastikan bahwa model yang digunakan memiliki performa yang optimal, baik dalam hal akurasi maupun keseimbangan prediksi antar kelas. Dengan melakukan penyetelan parameter yang tepat, model dapat dihindari dari masalah overfitting atau underfitting, yang dapat mengurangi akurasi prediksi pada data baru.
 
       Dampak dari tuning ini adalah peningkatan stabilitas dan keakuratan model, yang menjadikannya lebih andal saat digunakan di dunia nyata, khususnya dalam deteksi dini diabetes, di mana setiap keputusan medis harus didasarkan pada hasil yang sangat akurat.
 
-    - Menerapkan Evaluasi Model Menggunakan Metrik Klasifikasi yang Relevan (Accuracy, Precision, Recall, dan F1-score)<br>
+  - Menerapkan Evaluasi Model Menggunakan Metrik Klasifikasi yang Relevan (Accuracy, Precision, Recall, dan F1-score)<br>
     Model dievaluasi dengan metrik-metrik seperti accuracy, precision, recall, dan F1-score. Evaluasi ini memberikan gambaran yang lebih jelas tentang kinerja model, terutama dalam konteks medis di mana kesalahan prediksi bisa berbahaya. Dengan memperhatikan metrik seperti recall, kami memastikan bahwa model dapat mendeteksi sebanyak mungkin pasien yang benar-benar sakit, yang sangat penting untuk mencegah false negative (gagal mendeteksi diabetes).
 
       Dampak dari evaluasi ini dapat dilihat dari evaluasi metrik masing - masing model menunjukkan adanya peningkatan keandalan model dalam membuat prediksi yang tepat dengan pencegahan overfitting, hal ini dapat membantu dalam mengambil keputusan yang lebih tepat dan aman.
 
-    - Membandingkan Hasil dan Memilih Model Terbaik Berdasarkan Performa Evaluasi, Stabilitas, dan Interpretabilitas<br>
+  - Membandingkan Hasil dan Memilih Model Terbaik Berdasarkan Performa Evaluasi, Stabilitas, dan Interpretabilitas<br>
     Kriteria utama dalam pemilihan model adalah stabilitas, akurasi prediksi, dan kemampuan untuk diinterpretasi dalam konteks medis. Ini memastikan bahwa model yang dipilih dapat diandalkan untuk penggunaan praktis dan memudahkan dalam memahami hasil prediksi serta mengambil keputusan berdasarkan data.
 
       Dampak dari memilih model terbaik adalah memberikan solusi yang optimal yang dapat langsung digunakan untuk skrining risiko diabetes, dengan hasil yang mudah dipahami dan diterjemahkan ke dalam langkah-langkah medis yang tepat.
