@@ -342,9 +342,9 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
   - Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
 
 ### Hubungan dengan Business Understanding<br>
-    Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
+Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
 
-    Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab problem statement yang telah ditetapkan, yaitu memprediksi apakah seseorang berisiko diabetes, memilih algoritma yang paling efektif, dan mengidentifikasi fitur-fitur medis yang paling berpengaruh dalam prediksi tersebut.
+Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab problem statement yang telah ditetapkan, yaitu memprediksi apakah seseorang berisiko diabetes, memilih algoritma yang paling efektif, dan mengidentifikasi fitur-fitur medis yang paling berpengaruh dalam prediksi tersebut.
 
 **Menjawab Problem Statement**
   - Bagaimana cara memprediksi apakah seseorang mengidap diabetes berdasarkan data yang tersedia?<br>
@@ -367,7 +367,7 @@ Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam me
       Proses analisis korelasi berhasil mengidentifikasi fitur-fitur utama yang paling mempengaruhi prediksi risiko diabetes. Fitur-fitur seperti Glucose, BMI, dan Age memainkan peran penting dalam membentuk prediksi, memberikan wawasan yang sangat berguna bagi tenaga medis dalam pengambilan keputusan. Heatmap  dan Aplikasi yang dibangun memungkinkan visualisasi data dan hubungan antar fitur ini untuk memberikan pemahaman yang lebih baik dalam konteks klinis.
 
 #### Dampak Solusi Statement<br>
-    Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
+Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
 
   - Menggunakan Tiga Algoritma Klasifikasi Utama<br>
     Pendekatan ini bertujuan untuk membandingkan dan memilih model yang paling efektif dalam memprediksi risiko diabetes. Tiga algoritma yang digunakan adalah:
