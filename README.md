@@ -21,7 +21,7 @@ Referensi:
 
 ## Business Understanding
 
-Dalam proyek ini, tujuan utamanya adalah membangun model prediktif yang dapat mengidentifikasi individu dengan risiko diabetes berdasarkan data kesehatan mereka.
+Dalam proyek ini, tujuan utama adalah untuk membangun model prediktif yang dapat mengidentifikasi individu dengan risiko diabetes berdasarkan data kesehatan mereka. Model ini diharapkan dapat digunakan untuk membantu tenaga medis dalam melakukan skrining dini terhadap diabetes, yang berfokus pada pengolahan data medis yang sederhana namun memberikan hasil yang akurat dan dapat diandalkan.
 
 Bagian laporan ini mencakup:
 
@@ -30,15 +30,13 @@ Bagian laporan ini mencakup:
 Menjelaskan pernyataan masalah latar belakang:
 - Bagaimana cara memprediksi apakah seseorang mengidap diabetes berdasarkan data yang tersedia?
 - Algoritma Machine Learning apa yang paling efektif dalam prediksi diabetes berdasarkan akurasi dan performa lainnya?
-- Bagaimana hubungan setiap variable dalam menentukan prediksi diabetes?
+- Apa saja fitur kesehatan yang paling mempengaruhi klasifikasi risiko diabetes?
 
 ### Goals
 Untuk menjawab permasalahan yang ada, proyek ini bertujuan untuk:
-1. Membangun model klasifikasi prediktif yang akurat dan andal dalam mengidentifikasi individu dengan risiko tinggi terkena diabetes berdasarkan data kesehatan.
-2. Mengidentifikasi fitur atau atribut paling signifikan yang mempengaruhi hasil prediksi, guna memberikan wawasan tambahan dalam konteks medis dan pencegahan.
-3. Meningkatkan performa model melalui pemilihan algoritma yang tepat serta penerapan teknik seperti hyperparameter tuning dan handling class imbalance.
-4. Membandingkan kinerja berbagai algoritma klasifikasi, termasuk K-Nearest Neighbors, Random Forest, dan Logistic Regression, untuk menentukan model terbaik.
-5. Menghasilkan model dengan performa evaluasi optimal, dilihat dari metrik seperti akurasi, precision, recall, dan F1-score, sehingga hasil prediksi dapat dipercaya untuk mendukung keputusan awal.
+1. Mengembangkan model klasifikasi yang mampu memprediksi risiko diabetes dengan akurasi tinggi berdasarkan data medis pasien.
+2. Membandingkan efektivitas dari tiga algoritma klasifikasi (Logistic Regression, KNN, Random Forest) ntuk menentukan model terbaik dalam memprediksi diabetes, sehingga hasil prediksi dapat dipercaya untuk mendukung keputusan awal.
+3. Mengidentifikasi fitur-fitur yang mempengaruhi hasil prediksi untuk mendukung interpretasi medis yang lebih baik.
 
 #### **“Solution Statement”**
 Untuk mewujudkan tujuan proyek, pendekatan yang digunakan adalah sebagai berikut:
@@ -48,13 +46,15 @@ Untuk mewujudkan tujuan proyek, pendekatan yang digunakan adalah sebagai berikut
     - K-Nearest Neighbors (KNN) untuk menangkap pola lokal antar data.
     - Random Forest Classifier sebagai model ensemble untuk menangani non-linearitas dan meningkatkan generalisasi.
 
-2. Menangani masalah ketidakseimbangan data (imbalanced classes) menggunakan teknik SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.
+2. Menangani masalah ketidakseimbangan data (imbalanced classes) dengan SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.
 
-3. Melakukan hyperparameter tuning pada model yang memiliki potensi namun performanya belum optimal, dengan tujuan meningkatkan akurasi dan keseimbangan prediksi antar kelas.
+3. Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting.
 
-4. Menerapkan evaluasi model menggunakan metrik klasifikasi yang relevan (accuracy, precision, recall, dan F1-score) untuk memastikan performa menyeluruh yang adil dan dapat diandalkan.
+4. Menerapkan evaluasi model menggunakan metrik klasifikasi yang relevan (accuracy, precision, recall, dan F1-score) untuk memastikan performa menyeluruh yang dapat diandalkan.
 
-5. Membandingkan hasil dan memilih model terbaik berdasarkan performa evaluasi, stabilitas, dan interpretabilitas untuk dapat digunakan dalam implementasi praktis di dunia nyata.
+5. Membandingkan hasil dan memilih model terbaik berdasarkan performa evaluasi, stabilitas, dan interpretabilitas untuk dapat digunakan dalam implementasi praktis.
+
+6. Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.
 
 
 ## Data Understanding
@@ -111,11 +111,16 @@ Menggunakan SMOTE untuk oversampling kelas minoritas sehingga distribusi kelas m
 ## Modeling
 Pada tahap ini, saya menggunakan tiga algoritma machine learning yang cukup populer untuk kasus klasifikasi, yaitu:
 Model yang digunakan dan parameternya :
-| Model                | Parameter                          |
-|----------------------|-------------------------------------|
-| Logistic Regression  | `solver='liblinear'`               |
-| Random Forest        | `n_estimators=100`, `max_depth=None` |
-| K-Nearest Neighbors  | `n_neighbors=5` (default)          |
+| Model                              | Parameter                                                                                                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| K-Nearest Neighbors (KNN) (awal)   | `n_neighbors=15`, `weights='distance'`                                                                                                                       |
+| K-Nearest Neighbors (KNN) (tuning) | `n_neighbors=range(3, 21, 2)`, `weights=['uniform', 'distance']`, `metric=['euclidean', 'manhattan', 'minkowski']`                                           |
+| Random Forest (awal)               | `n_estimators=100`, `random_state=101`                                                                                                                       |
+| Random Forest (tuning)             | `n_estimators=[100, 200]`, `max_depth=[None, 10, 20]`, `min_samples_split=[2, 5]`, `min_samples_leaf=[1, 2]`, `max_features='sqrt'`, `random_state=42`       |
+| Logistic Regression (awal)         | `max_iter=1000`                                                                                                                                              |
+| Logistic Regression (tuning)       | `penalty='elasticnet'`, `solver='saga'`, `l1_ratio=[0.1, 0.5, 0.9]`, `max_iter=1000`, `random_state=42`                                                     |
+                                                                      |
+
 
 Model-model ini dipilih karena masing-masing mewakili pendekatan yang berbeda dalam klasifikasi, mulai dari yang sederhana hingga yang lebih kompleks, sehingga bisa dibandingkan performanya secara adil terhadap dataset diabetes ini.
 
@@ -125,6 +130,14 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
 
 1. K-Nearest Neighbors (KNN)<br>
     KNN adalah model yang sangat intuitif dan mudah dipahami. Cara kerjanya yaitu mencari sejumlah "tetangga terdekat" dari sebuah titik data baru, lalu memprediksi kelasnya berdasarkan mayoritas label dari tetangga tersebut. Jarak yang digunakan untuk mengukur kedekatan biasanya adalah Euclidean distance.
+
+    Kelebihan:
+    - Sederhana dan tidak butuh banyak asumsi.
+    - Cocok untuk dataset berukuran kecil hingga sedang..
+
+    Kekurangan:
+    - Performanya bisa turun jika datanya banyak (scalability).
+    - Sensitif terhadap skala fitur dan noise, perlu dilakukan normalisasi.
     
     Pada model ini, KNN dikonfigurasi dengan 15 tetangga terdekat dan menggunakan bobot berdasarkan jarak (weights='distance'), sehingga tetangga yang lebih dekat memiliki pengaruh lebih besar.
 
@@ -135,27 +148,32 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     ```
 
     Pemilihan nilai k=15 bertujuan untuk menstabilkan prediksi. Nilai k yang terlalu kecil (misalnya 3 atau 5) dapat membuat model terlalu sensitif terhadap noise (overfitting), sementara nilai yang lebih besar seperti 15 memungkinkan model menangkap pola umum dengan lebih baik.
-    
-    Kelebihan:
-    - Sederhana dan tidak butuh banyak asumsi.
-    - Cocok untuk dataset berukuran kecil hingga sedang..
 
-    Kekurangan:
-    - Performanya bisa turun jika datanya banyak (scalability).
-    - Sensitif terhadap skala fitur dan noise, perlu dilakukan normalisasi.
+    Tuning KNN:
+    Dikarenakan performa KNN sangat bergantung pada nilai k dan cara menghitung jarak walaupun akurasi sudah sangat baik, hypertuning diperlukan untuk menemukan kombinasi parameter terbaik agar model tidak overfit dan dapat menangkap pola data dengan optimal.
+
+    Dengan menggunakan GridSearchCV, pada model ini mencoba berbagai kombinasi parameter:
+    - n_neighbors ganjil antara 3 hingga 19,
+    - weights antara 'uniform' dan 'distance',
+    - metric termasuk 'euclidean', 'manhattan', dan 'minkowski'.
+
+    ```python
+    param_grid_knn = {
+    'n_neighbors': list(range(3, 21, 2)),
+    'weights': ['uniform', 'distance'],
+    'metric': ['euclidean', 'manhattan', 'minkowski']}
+    ```
+
+    Setelah tuning, ditemukan parameter terbaik yang meningkatkan performa model:
+    ```python
+    Best parameters for KNN: {'metric': 'euclidean', 'n_neighbors': 17, 'weights': 'distance'}
+    ```
+
+    Model KNN terbaik dari tuning ini kemudian digunakan untuk prediksi dan menunjukkan peningkatan skor F1 Score dibanding model awal.
+    
 
 2. Random Forest<br>
     Random Forest adalah model berbasis ensembling yang menggunakan banyak pohon keputusan (decision tree). Ibaratnya, daripada menebak keputusan berdasarkan satu "pendapat", model ini mengumpulkan banyak "pendapat dari pohon-pohon" dan mengambil suara terbanyak.
-
-    Setiap decision tree dibentuk dari subset data dan fitur yang berbeda-beda (ini disebut bagging), jadi model ini lebih kuat dalam menangani overfitting dibanding satu decision tree saja.
-    
-    ```python
-    rf_model = RandomForestClassifier(n_estimators=100, random_state=101)
-    rf_model.fit(X_train_resampled, y_train_resampled)
-    y_pred_rf = rf_model.predict(X_test_scaled)
-    ```
-
-    Penggunaan random_state=101 bertujuan agar eksperimen bersifat reproducible (hasil konsisten saat dijalankan ulang), meskipun angkanya bebas (arbitrary).
 
     Kelebihan:
     - Sangat kuat untuk data yang kompleks dan interaksi non-linier.
@@ -168,18 +186,36 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     - Waktu training bisa lebih lama dibanding model sederhana.
     - Performa bisa menurun jika data terlalu noisy.
 
+    Setiap decision tree dibentuk dari subset data dan fitur yang berbeda-beda (ini disebut bagging), jadi model ini lebih kuat dalam menangani overfitting dibanding satu decision tree saja.
+    
+    ```python
+    rf_model = RandomForestClassifier(n_estimators=100, random_state=101)
+    rf_model.fit(X_train_resampled, y_train_resampled)
+    y_pred_rf = rf_model.predict(X_test_scaled)
+    ```
+
+    Penggunaan random_state=101 bertujuan agar eksperimen bersifat reproducible (hasil konsisten saat dijalankan ulang), meskipun angkanya bebas (arbitrary).
+
+    Tuning Random Forest:
+    Dikarenakan Random Forest memiliki banyak parameter yang memengaruhi kompleksitas dan generalisasi, hypertuning penting untuk menghindari underfitting atau overfitting, serta mencari konfigurasi terbaik untuk performa optimal guna menjaga keseimbangan antara bias dan variance.
+
+    Dengan GridSearchCV, model ini dilakukan eksplorasi kombinasi parameter:
+    - n_estimators (jumlah pohon): 100, 200
+    - max_depth: None, 10, 20
+    - min_samples_split: 2, 5
+    - min_samples_leaf: 1, 2
+    - max_features: 'sqrt'
+
+    Setelah tuning, ditemukan parameter terbaik yang meningkatkan performa model:
+    ```python
+    Best Parameters RF: {'max_depth': 20, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 100}
+    ```
+    Model hasil tuning ini kemudian diuji dan menunjukkan peningkatan akurasi dan f1 score dibanding model dasar.
+
 3. Logistic Regression<br>
     Logistic Regression adalah model dasar yang sering digunakan dalam klasifikasi biner. Walaupun namanya "regression", model ini bukan untuk memprediksi angka, tapi Logistic Regression adalah model klasifikasi dasar yang menghitung probabilitas yang termasuk dalam suatu kelas (misalnya, terkena diabetes atau tidak). Model ini cukup interpretatif dan sering digunakan sebagai baseline dalam banyak proyek klasifikasi.
 
     Cara kerjanya adalah menghitung peluang (probabilitas) seseorang terkena diabetes berdasarkan nilai fitur-fitur seperti kadar glukosa, tekanan darah, dll. Jika probabilitasnya di atas 0.5, maka model akan memprediksi bahwa orang tersebut terkena diabetes (label = 1).
-
-    ```python
-    log_model = LogisticRegression(max_iter=1000)
-    log_model.fit(X_train_resampled, y_train_resampled)
-    y_pred_log = log_model.predict(X_test_scaled)
-    ```
-
-    Parameter max_iter=1000 digunakan untuk memastikan proses optimasi konvergen, terutama jika dataset kompleks. Nilai default (100) sering kali tidak cukup dan menghasilkan peringatan ConvergenceWarning.
 
     Kelebihan:
     - Sederhana dan mudah diinterpretasikan.
@@ -189,16 +225,30 @@ Tujuan dari penggunaan beberapa model ini adalah untuk membandingkan performa me
     Kekurangan:
     - Tidak cocok untuk data dengan hubungan yang sangat kompleks dan tidak linier.
 
-    Namun, pada awalnya performa Logistic Regression jauh lebih rendah dibandingkan dua model lainnya. Nilai akurasinya hanya 76.89%, jauh di bawah KNN dan Random Forest yang mencapai hampir 99%.
+    ```python
+    log_model = LogisticRegression(max_iter=1000)
+    log_model.fit(X_train_resampled, y_train_resampled)
+    y_pred_log = log_model.predict(X_test_scaled)
+    ```
 
-    Untuk meningkatkan performa, dilakukan hyperparameter tuning menggunakan teknik Grid Search. Fokus tuning diarahkan pada pemilihan penalti dan solver. Setelah eksplorasi parameter, diperoleh kombinasi terbaik:
+    Parameter max_iter=1000 digunakan untuk memastikan proses optimasi konvergen, terutama jika dataset kompleks. Nilai default (100) sering kali tidak cukup dan menghasilkan peringatan ConvergenceWarning.
+
+    Namun model pertama pada ini (max_iter=1000) memiliki nilai akurasi hanya 76.89% jauh di bawah KNN dan Random Forest yang mencapai hampir 99%.
+
+    Tuning Parameter Logistic Regression:
+    Hypertuning diperlukan untuk menemukan regularisasi dan solver terbaik agar model tidak overfit dan tetap stabil serta diharapkan dapat meningkatkan akurasi model, terutama pada data dengan fitur multikolinearitas, namun pada kasus ini peningkatannya terbatas.
+
+    Dengan GridSearchCV, pada model ini dicoba parameter berikut untuk meningkatkan performa:
+    - penalty: elasticnet
+    - solver: saga
+    - l1_ratio: 0.1, 0.5, 0.9
    
+    Setelah tuning, ditemukan parameter terbaik yang meningkatkan performa model:
     ```python
     Best Parameters: {'l1_ratio': 0.1, 'penalty': 'elasticnet', 'solver': 'saga'}
     ```
-    
-    Namun, meskipun sudah dilakukan tuning, peningkatan akurasi masih terbatas, hanya mencapai 76.71%, menandakan bahwa model Logistic Regression kurang cocok untuk dataset ini dibanding model lainnya.
-   
+
+    Namun peningkatan performa setelah tuning masih terbatas, dengan akurasi hanya mencapai 76.71% dan F1 score di bawah KNN dan Random Forest. Ini menunjukkan Logistic Regression kurang cocok untuk dataset ini.
 
 Berdasarkan evaluasi terhadap ketiga model yang telah dilatih yaitu K-Nearest Neighbors (KNN), Random Forest, dan Logistic Regression — model yang dipilih sebagai solusi terbaik untuk kasus prediksi diabetes ini adalah:
 
@@ -207,13 +257,13 @@ Berdasarkan evaluasi terhadap ketiga model yang telah dilatih yaitu K-Nearest Ne
 Alasan Pemilihan KNN sebagai Model Terbaik:
 
 - Akurasi Tinggi<br>
-KNN berhasil mencapai akurasi sebesar 98.91%. Artinya, model ini mampu memprediksi dengan benar hampir seluruh data uji, menunjukkan kinerjanya sangat baik dalam memahami pola pada data.
+KNN berhasil mencapai akurasi sebesar 99.45% setelah tuning. Artinya, model ini mampu memprediksi dengan benar hampir seluruh data uji, menunjukkan kinerjanya sangat baik dalam memahami pola pada data.
 
 - Performa Konsisten Tanpa Overfitting<br>
 Meskipun akurasinya sangat tinggi, KNN tetap menunjukkan stabilitas dan tidak overfitting karena menggunakan bobot berdasarkan jarak, membuat prediksinya lebih “bijak” terhadap tetangga terdekat yang paling relevan.
 
-- Memprioritaskan recall<br>
-Recall KNN 0.9948 artinya, hampir semua kasus positif (fraud/penyakit) berhasil dideteksi dengan benar. Ini sangat penting untuk skenario seperti deteksi penyakit, di mana tidak mendeteksi pasien yang sebenarnya sakit dapat berbahaya.
+- Akurasi Metrik Evaluasi<br>
+enghasilkan nilai akurasi, precision, recall, dan F1-score terbaik serta paling seimbang di antara ketiganya,terutama pada Recall KNN 99.47% dan F1 Score 99.21% artinya, hampir semua kasus positif (penyakit) berhasil dideteksi dengan benar. Ini sangat penting untuk skenario seperti deteksi penyakit, di mana tidak mendeteksi pasien yang sebenarnya sakit dapat berbahaya.
   
 - Tidak Memerlukan Asumsi Khusus<br>
 KNN tidak mengharuskan asumsi seperti linearitas hubungan antar fitur (berbeda dengan Logistic Regression). Ini sangat membantu jika data bersifat non-linear atau memiliki distribusi yang tidak biasa.
@@ -223,19 +273,30 @@ Secara konsep, KNN sangat mudah dipahami oleh praktisi maupun pihak non-teknis: 
 
 ## Evaluation
 
-Pada tahap ini, evaluasi model dilakukan untuk memahami seberapa baik kinerja model klasifikasi dalam memprediksi data baru. Evaluasi model dilakukan dengan menggunakan metrik-metrik evaluasi klasifikasi berikut:
+Evaluasi model ini bertujuan untuk mengukur seberapa baik kinerja model dalam memprediksi risiko diabetes pada data baru, serta untuk memastikan bahwa model yang dibangun memenuhi tujuan yang lebih luas sesuai dengan Business Understanding. Evaluasi ini melibatkan analisis hasil model berdasarkan metrik-metrik evaluasi yang relevan dalam konteks medis, di mana kesalahan prediksi dapat memiliki dampak signifikan.
 
-- **Accuracy**: Akurasi adalah proporsi jumlah prediksi yang benar (positif dan negatif) dibandingkan dengan total prediksi. Cocok digunakan ketika distribusi kelas seimbang.
+1. Metrik Evaluasi
+Metrik evaluasi digunakan untuk mengukur dan menilai performa model dalam konteks klasifikasi. Dalam kasus ini, kami menggunakan beberapa metrik untuk mengevaluasi model secara komprehensif:
+
+- **Accuracy**: Akurasi adalah proporsi jumlah prediksi yang benar (positif dan negatif) dibandingkan dengan total prediksi.
   Formula:  
   ![Accuracy](https://github.com/user-attachments/assets/4f0bdd4a-12db-4cde-862c-65d5cccf8ea9)
+
+  Dalam kasus ini, akurasi model KNN mencapai 99.45%, yang menunjukkan bahwa model ini sangat baik dalam memberikan prediksi yang benar untuk mayoritas data.
 
 - **Precision**: Presisi mengukur seberapa akurat prediksi positif dari model. Artinya, dari semua yang diprediksi sebagai positif, berapa banyak yang benar-benar positif. Cocok ketika false positive lebih berdampak besar, misalnya pada diagnosa penyakit.
   Formula:  
   ![Precision](https://github.com/user-attachments/assets/4d1e0bf6-cf26-4286-a4cb-b1bf476ba0e5)
 
+  Dalam konteks prediksi diabetes, presisi penting untuk memastikan bahwa pasien yang diprediksi mengidap diabetes benar-benar mengidap penyakit tersebut. Model KNN menunjukkan presisi 98%, yang berarti hampir semua prediksi positif yang dihasilkan oleh model benar adanya.
+
+  Hal ini sangat penting dalam konteks medis, di mana kegagalan untuk mendeteksi pasien yang benar-benar mengidap diabetes (false negative) bisa berbahaya. Model KNN memberikan recall 99.47%, yang menunjukkan bahwa hampir semua pasien yang mengidap diabetes berhasil terdeteksi oleh model, tanpa ada yang terlewat (false negative = 0).
+
 - **Recall**: Recall menunjukkan seberapa banyak dari kasus positif yang berhasil dideteksi dengan benar oleh model. Cocok ketika false negative berbahaya, seperti gagal mendeteksi pasien sakit.
   Formula:  
   ![Recall](https://github.com/user-attachments/assets/8bfb5177-b2b0-41da-8e0d-c42c773dfa04)
+
+  Model KNN mendapatkan F1-score 99.21%, yang menunjukkan bahwa model ini tidak hanya akurat, tetapi juga sensitif terhadap kasus positif yang harus terdeteksi.
 
 - **F1-Score**: F1-Score adalah rata-rata harmonik dari Precision dan Recall. Digunakan saat membutuhkan keseimbangan antara presisi dan recall
   Formula:  
@@ -258,7 +319,7 @@ Pada tahap ini, evaluasi model dilakukan untuk memahami seberapa baik kinerja mo
     - F1-Score → Dipakai untuk menyeimbangkan keduanya.
 
 2. Model terbaik bukan hanya yang punya akurasi tinggi.<br>
-   evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
+   Evaluasi multi-metrik (Accuracy, Precision, Recall, F1) membantu kita memilih model yang tidak hanya akurat secara keseluruhan, tetapi juga sensitif  terhadap pasien yang benar-benar mengidap diabetes.
 
 3. Metrik evaluasi menjadi penilaian apakah perubahan/penyesuaian fitur tersebut meningkatkan performa model atau tidak.<br>
    Metrik tidak langsung menjawab hubungan antar fitur, tetapi membantu menilai dampak jika suatu fitur diubah, dihapus, atau diprioritaskan.
@@ -269,23 +330,74 @@ Berikut adalah hasil evaluasi terhadap ketiga model yang digunakan:
 
 | Model               | Accuracy | Precision | Recall | F1 Score |
 |---------------------|----------|-----------|--------|----------|
-| KNN                 | 0.98     | 0.97      | 0.99   | 0.98     |
-| Random Forest       | 0.99     | 0.98      | 0.98   | 0.98     |
+| KNN                 | 0.99     | 0.98      | 0.99   | 0.99     |
+| Random Forest       | 0.98     | 0.98      | 0.97   | 0.98     |
 | Logistic Regression | 0.76     | 0.64      | 0.72   | 0.68     |
 
-Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE dan data training yang telah diskalakan.
+Catatan: Evaluasi dilakukan terhadap data uji (X_test) setelah model dilatih menggunakan data hasil oversampling SMOTE (X_train_resampled) dan data training yang telah diskalakan.
 
 **Interpretasi dan Insight**
-- KNN menjadi model yang direkomendasikan dari ketiga model dengan memprioritaskan recall tertinggi yaitu 0.9948 artinya, hampir semua kasus positif (penyakit) berhasil dideteksi dengan benar. Artinya, model tidak melewatkan satu pun pasien yang benar-benar mengidap diabetes dalam prediksinya (False Negative = 0). Hal ini sangat penting dalam konteks medis, karena salah satu tujuan utama adalah mendeteksi semua kasus positif secara tepat.
-- Random Forest juga cukup baik, namun sedikit kalah di aspek precision dan recall , yang berarti masih terdapat sejumlah kecil false positive.
-- Logistic Regression memberikan performa paling rendah dalam semua metrik, meskipun telah dilakukan hyperparameter tuning. Ini menunjukkan model ini kurang cocok untuk menangkap pola non-linear atau kompleksitas data dalam kasus ini.
+Berdasarkan hasil evaluasi, 
+- KNN menjadi model yang direkomendasikan karena memiliki akurasi dan recall yang sangat tinggi (99.45% dan 99.47%), yang menunjukkan bahwa model ini mampu mendeteksi hampir semua kasus positif secara akurat, dengan false negative yang sangat rendah (0). Hal ini sangat penting dalam konteks medis, di mana tidak mendeteksi pasien yang benar-benar mengidap diabetes dapat menyebabkan konsekuensi serius.
+- Random Forest juga memberikan hasil yang baik dengan akurasi 98%, namun masih sedikit kalah dalam hal recall dan F1-score dibandingkan KNN, yang menunjukkan bahwa meskipun model ini cukup stabil, ada sedikit trade-off dalam performa yang lebih rendah pada deteksi kasus positif.
+- Di sisi lain, Logistic Regression memberikan hasil yang paling rendah dalam semua metrik, dengan akurasi hanya 76.89%. Hasil ini menunjukkan bahwa Logistic Regression tidak mampu menangkap kompleksitas data secara optimal, terutama ketika hubungan antar fitur bersifat non-linear, yang merupakan karakteristik dari dataset diabetes ini. Meskipun sudah dilakukan hyperparameter tuning, performa Logistic Regression masih terbatas.
+
+2. Hubungan dengan Business Understanding
+Proyek ini bertujuan untuk membangun model prediktif yang dapat membantu mendeteksi risiko diabetes menggunakan data medis yang sederhana dan terjangkau. Tujuan utama adalah menyediakan alat bantu yang cepat, akurat, dan hemat biaya untuk mendukung keputusan medis, khususnya di negara berpenghasilan rendah dan menengah yang sering kali kekurangan fasilitas dan tenaga medis terlatih. Evaluasi ini bertujuan untuk memastikan bahwa model yang dibangun tidak hanya efektif dalam memprediksi risiko diabetes, tetapi juga relevan dengan masalah yang ada, serta mendukung tujuan utama proyek untuk mendeteksi diabetes lebih awal.
+
+Evaluasi juga berfokus pada bagaimana model ini dapat digunakan untuk menjawab problem statement yang telah ditetapkan, yaitu memprediksi apakah seseorang berisiko diabetes, memilih algoritma yang paling efektif, dan mengidentifikasi fitur-fitur medis yang paling berpengaruh dalam prediksi tersebut.
+
+**Menjawab Problem Statement**
+- Bagaimana cara memprediksi apakah seseorang mengidap diabetes berdasarkan data yang tersedia?<br>
+  Model yang dibangun menggunakan tiga algoritma klasifikasi utama—KNN, Random Forest, dan Logistic Regression—berhasil memberikan prediksi yang sangat akurat tentang risiko diabetes. Model KNN, dengan akurasi 99.45%, mampu mendeteksi hampir seluruh kasus positif (Recall 99.47%), yang berarti model ini sangat baik dalam mendeteksi pasien yang benar-benar mengidap diabetes.
+
+- Algoritma Machine Learning apa yang paling efektif dalam prediksi diabetes?<br>
+  Berdasarkan evaluasi metrik performa, KNN terbukti menjadi algoritma yang paling efektif dalam memprediksi diabetes. KNN memberikan hasil terbaik pada semua metrik evaluasi, terutama dalam hal recall, yang penting untuk mendeteksi semua pasien yang benar-benar sakit.
+
+- Apa saja fitur kesehatan yang paling memengaruhi klasifikasi risiko diabetes?
+  Fitur-fitur seperti Glucose, BMI, dan Age menunjukkan korelasi yang sangat kuat dengan Outcome (status diabetes). Fitur-fitur ini memainkan peran kunci dalam membentuk prediksi model, yang dapat memberikan wawasan penting untuk pengambilan keputusan medis. Model KNN yang menunjukkan kinerja terbaik, didorong oleh fitur-fitur ini yang berpengaruh besar dalam mengklasifikasikan seseorang berisiko diabetes atau tidak.
+
+3. Mencapai Goals yang Diharapkan
+- Goal 1: Mengembangkan model klasifikasi dengan akurasi tinggi untuk memprediksi risiko diabetes.<br>
+  KNN berhasil mencapai akurasi 99.45%, yang sangat tinggi, dan memenuhi tujuan utama untuk membangun model yang dapat diandalkan dalam memprediksi risiko diabetes. Model ini sangat cocok untuk diterapkan dalam konteks medis karena kemampuannya dalam mendeteksi pasien yang benar-benar sakit.
+
+- Goal 2: Membandingkan efektivitas tiga algoritma klasifikasi (Logistic Regression, KNN, Random Forest).<br>
+  Evaluasi ini berhasil membandingkan ketiga algoritma secara objektif, dengan KNN menjadi yang terbaik berdasarkan akurasi, recall, precision, dan F1-score. Hasil ini memberikan bukti bahwa KNN adalah algoritma yang lebih efektif dan stabil dibandingkan dengan model lainnya.
+
+- Goal 3: Mengidentifikasi fitur-fitur kunci yang memengaruhi hasil prediksi.<br>
+  Proses analisis korelasi berhasil mengidentifikasi fitur-fitur utama yang paling mempengaruhi prediksi risiko diabetes. Fitur-fitur seperti Glucose, BMI, dan Age memainkan peran penting dalam membentuk prediksi, memberikan wawasan yang sangat berguna bagi tenaga medis dalam pengambilan keputusan. Heatmap  dan Aplikasi yang dibangun memungkinkan visualisasi data dan hubungan antar fitur ini untuk memberikan pemahaman yang lebih baik dalam konteks klinis.
+
+4. Dampak Solusi Statement
+Untuk mewujudkan tujuan proyek dan memberikan solusi yang efektif dalam deteksi dini diabetes, pendekatan yang digunakan adalah sebagai berikut:
+
+- Menggunakan Tiga Algoritma Klasifikasi Utama<br>
+Pendekatan ini bertujuan untuk membandingkan dan memilih model yang paling efektif dalam memprediksi risiko diabetes. Tiga algoritma yang digunakan adalah:
+
+  1. Logistic Regression: Sebagai model baseline yang sederhana dan mudah diinterpretasi, memberikan dasar untuk perbandingan dengan model yang lebih kompleks.
+  2. K-Nearest Neighbors (KNN): Digunakan untuk menangkap pola lokal antar data, dengan fokus pada tetangga terdekat untuk memprediksi kelas.
+  3. Random Forest Classifier: Model ensemble yang mampu menangani non-linearitas dan meningkatkan generalisasi dengan menggabungkan banyak pohon keputusan, sehingga memperkuat prediksi.
+
+- Menangani Masalah Ketidakseimbangan Data (Imbalanced Classes) Menggunakan SMOTE untuk menyeimbangkan distribusi antara kelas penderita dan non-penderita diabetes.<br>
+Dataset ini memiliki distribusi kelas yang tidak seimbang antara penderita dan non-penderita diabetes. Untuk mengatasi ketidakseimbangan ini, digunakan teknik SMOTE (Synthetic Minority Over-sampling Technique) untuk menyeimbangkan distribusi kelas, memastikan model dapat memprediksi dengan lebih baik tanpa bias terhadap kelas mayoritas.
+
+- Melakukan Hyperparameter Tuning untuk Meningkatkan Performa, Prediksi, dan Penanganan Underfitting dan Overfitting<br>
+Beberapa model, terutama KNN dan Random Forest, memiliki potensi besar namun performanya bisa ditingkatkan dengan penyetelan hyperparameter yang tepat. Oleh karena itu, dilakukan hyperparameter tuning untuk meningkatkan akurasi dan keseimbangan prediksi antar kelas. Proses ini memastikan model dapat menghindari overfitting atau underfitting, dan menghasilkan prediksi yang lebih stabil dan akurat.
+
+- Menerapkan Evaluasi Model Menggunakan Metrik Klasifikasi yang Relevan (Accuracy, Precision, Recall, dan F1-score)<br>
+Untuk memastikan performa model yang adil dan dapat diandalkan, digunakan metrik evaluasi yang mencakup accuracy, precision, recall, dan F1-score. Metrik-metrik ini penting untuk mengevaluasi model dalam konteks medis, di mana kesalahan prediksi dapat memiliki konsekuensi serius. Evaluasi ini memberikan gambaran yang lebih lengkap tentang seberapa baik model dalam mendeteksi pasien yang benar-benar menderita diabetes tanpa menyebabkan kesalahan yang berbahaya (false positive dan false negative).
+
+- Membandingkan Hasil dan Memilih Model Terbaik Berdasarkan Performa Evaluasi, Stabilitas, dan Interpretabilitas<br>
+Setelah model diuji dan dievaluasi menggunakan metrik-metrik tersebut, langkah berikutnya adalah membandingkan hasil dan memilih model terbaik berdasarkan performa evaluasi yang paling memuaskan. Kriteria utama dalam pemilihan model adalah stabilitas, akurasi prediksi, dan kemampuan untuk diinterpretasi dalam konteks medis. Model yang dipilih harus mampu diimplementasikan dalam dunia nyata dengan mudah, memberikan hasil yang akurat, dan dapat dipahami oleh tenaga medis.
+
+- Menyediakan solusi prediktif yang tidak hanya akurat tetapi juga mudah diimplementasikan dalam praktik medis, dengan antarmuka web aplikasi yang ramah pengguna dan dapat diandalkan dalam deteksi dini diabetes.
+
+Proyek ini tidak hanya fokus pada pengembangan model prediktif yang akurat, tetapi juga pada implementasi praktis model tersebut dalam konteks medis sehari-hari. Oleh karena itu, salah satu aspek penting dari solusi yang dihasilkan adalah aplikasi berbasis Streamlit yang dirancang untuk memberikan antarmuka pengguna yang intuitif, ramah pengguna dan informatif. Antarmuka aplikasi ini dirancang agar ramah pengguna, dengan input data yang mudah, informasi dan visualisasi hasil yang jelas. Aplikasi ini memungkinkan prediksi menggunakan tiga model klasifikasi (KNN, Random Forest, dan Logistic Regression) yang telah dievaluasi.
 
 ## Kesimpulan
 
-- Proyek ini berhasil membangun model prediksi diabetes dengan menggunakan data medis sederhana.
-- Dari tiga model yang diuji (KNN, Random Forest, Logistic Regression), KNN dijadikan model terbaik dengan akurasi 98.91% dan recall tertinggi 99.47%, menjadikannya pilihan utama untuk digunakan dalam prediksi risiko diabetes.
-- Penanganan nilai nol yang tidak valid dan imbalance data menggunakan median imputation dan SMOTE sangat berkontribusi dalam meningkatkan performa model.
-- Hyperparameter tuning pada Logistic Regression memberikan sedikit peningkatan, tetapi model ini tetap kurang cocok dibanding dua model lainnya untuk dataset ini.
+Berdasarkan hasil evaluasi ini, proyek ini berhasil membangun model prediktif yang efektif dalam mendeteksi risiko diabetes menggunakan data medis yang relatif sederhana. KNN muncul sebagai model terbaik dengan akurasi dan recall yang tinggi, sehingga sangat direkomendasikan untuk implementasi lebih lanjut dalam skrining risiko diabetes. Penggunaan teknik seperti SMOTE untuk mengatasi ketidakseimbangan data dan hyperparameter tuning yang diterapkan pada KNN dan Random Forest juga berkontribusi besar terhadap peningkatan performa model. Model ini diharapkan dapat memberikan dampak yang signifikan dalam mendeteksi dini diabetes dan mendukung keputusan medis yang lebih cepat dan akurat. 
+
+Evaluasi ini juga mengonfirmasi bahwa tujuan utama dari proyek ini, yaitu untuk mengembangkan alat prediktif yang dapat diandalkan, telah tercapai, dengan model yang tidak hanya akurat tetapi juga dapat diinterpretasikan oleh para tenaga medis untuk keputusan klinis yang lebih baik.
 
 ## Deployment
 
@@ -320,4 +432,5 @@ app/
 1. Pastikan file app.py ada di root folder
 2. Aktifkan virtual environment (opsional tapi direkomendasikan)
 3. Install semua dependency dengan : pip install -r requirements.txt
+4. Jika perlu upgrade pip (opsional): python.exe -m pip install --upgrade pip 
 4. Jalankan aplikasi Streamlit di terminal code editor : streamlit run app.py
