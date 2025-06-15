@@ -1,7 +1,8 @@
-## 🩺 Prediksi Risiko Diabetes dengan Machine Learning
+# 🩺 Prediksi Risiko Diabetes dengan Machine Learning
 Proyek ini bertujuan membangun model prediktif untuk mendeteksi risiko diabetes berdasarkan data medis sederhana. Menggunakan dataset dari Kaggle, dilakukan eksplorasi data, preprocessing, penyeimbangan kelas (SMOTE), dan modeling dengan tiga algoritma: K-Nearest Neighbors (KNN), Random Forest, dan Logistic Regression.
 ---
 🔍 Model Terbaik:
+<br>
 ✅ KNN dipilih karena memberikan akurasi tertinggi (99.45%) dan recall terbaik (99.47%), sangat ideal untuk deteksi dini.
 ---
 🔧 Fitur Proyek:
