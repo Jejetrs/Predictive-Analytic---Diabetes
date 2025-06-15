@@ -14,11 +14,13 @@ Proyek ini bertujuan membangun model prediktif untuk mendeteksi risiko diabetes 
 🌐 Link Aplikasi: https://predictive-analytic-diabetes.streamlit.app/
 ---
 📂 Struktur Folder :
+```
 app/
 ├── app.py
 ├── requirements.txt
 ├── cleaned_dataset/Cleaned_Healthcare_Diabetes.csv
 ├── model/{rf_model.pkl, knn_model.pkl, lr_model.pkl, scaler.pkl}
+```
 ---
 📌 Cara Menjalankan:
 python -m venv env
